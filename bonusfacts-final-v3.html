@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>BonusFacts — Bis zu 500€ Bonus sichern</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080808; --bg2:#111; --bg3:#1a1a1a;
+  --gold:#ffd234; --gold2:#ff9f00; --gold3:#fffbe0;
+  --green:#00e676; --red:#ff3d3d; --white:#fff;
+  --grey:#666; --grey2:#333;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Figtree',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  max-width:480px;
+  margin:0 auto;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* ── PARTICLE CANVAS ── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;}
+
+/* ── ANIMATIONS ── */
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(255,210,52,0.3)}50%{box-shadow:0 0 60px rgba(255,210,52,0.8),0 0 100px rgba(255,210,52,0.2)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(0.4) perspective(300px) rotateX(15deg);opacity:0}70%{transform:scale(1.06) perspective(300px) rotateX(3deg)}100%{transform:scale(1) perspective(300px) rotateX(8deg);opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes chipFloat{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.05)}100%{transform:translateY(0) scale(1)}}
+@keyframes neonPulse{0%,100%{text-shadow:0 0 10px var(--gold),0 0 20px var(--gold),0 0 40px var(--gold2)}50%{text-shadow:0 0 20px var(--gold),0 0 40px var(--gold),0 0 80px var(--gold2),0 0 120px var(--gold2)}}
+@keyframes cardEnter{from{opacity:0;transform:translateY(32px) perspective(600px) rotateX(8deg)}to{opacity:1;transform:translateY(0) perspective(600px) rotateX(0deg)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(255,210,52,0.2)}50%{border-color:rgba(255,210,52,0.8)}}
+@keyframes chipSpin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+
+/* ── CASINO SCANLINE EFFECT ── */
+body::after{
+  content:'';position:fixed;top:0;left:0;right:0;height:3px;
+  background:rgba(255,210,52,0.06);
+  animation:scanline 6s linear infinite;
+  pointer-events:none;z-index:1;
+}
+
+/* ── URGENCY BAR ── */
+.urgency-bar{
+  position:relative;z-index:10;
+  background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));
+  background-size:200% auto;animation:shimmer 2.5s linear infinite;
+  padding:9px 16px;display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:0.78rem;font-weight:800;color:#000;overflow:hidden;
+}
+.urgency-bar::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);animation:shimmer 2s linear infinite;}
+.ub-dot{width:7px;height:7px;border-radius:50%;background:#000;animation:blink 0.8s ease-in-out infinite;}
+.ub-timer{font-family:'Anton',sans-serif;font-size:0.92rem;letter-spacing:2px;background:rgba(0,0,0,0.18);padding:2px 8px;border-radius:3px;}
+
+/* ── NAV ── */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 18px;background:rgba(8,8,8,0.97);
+  border-bottom:1px solid rgba(255,210,52,0.12);
+  position:sticky;top:0;z-index:200;backdrop-filter:blur(16px);
+}
+.nav-logo{font-family:'Anton',sans-serif;font-size:1.25rem;letter-spacing:2px;color:var(--white);display:flex;align-items:center;gap:7px;}
+.nav-logo .ng{color:var(--gold);animation:neonPulse 3s ease-in-out infinite;}
+.ndot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);animation:blink 2s ease-in-out infinite;}
+.lang-sw{display:flex;border:1px solid rgba(255,255,255,0.12);border-radius:4px;overflow:hidden;}
+.lb{font-size:0.68rem;font-weight:700;padding:5px 10px;cursor:pointer;color:var(--grey);transition:all 0.15s;}
+.lb.on{background:var(--gold);color:#000;}
+
+/* ── HERO ── */
+.hero{
+  padding:28px 18px 26px;position:relative;overflow:hidden;z-index:2;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%,rgba(255,210,52,0.14),transparent 65%),
+    radial-gradient(ellipse 50% 40% at 80% 80%,rgba(255,160,0,0.06),transparent),
+    var(--bg);
+}
+/* 3D grid */
+.hero::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:55%;
+  background:
+    linear-gradient(rgba(255,210,52,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,210,52,0.05) 1px,transparent 1px);
+  background-size:30px 30px;
+  transform:perspective(220px) rotateX(62deg);transform-origin:bottom;pointer-events:none;
+}
+/* vignette */
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 40%,rgba(0,0,0,0.5));pointer-events:none;}
+
+.coin{position:absolute;font-size:1.8rem;animation:float 3.5s ease-in-out infinite;opacity:0.55;pointer-events:none;z-index:1;filter:drop-shadow(0 0 8px rgba(255,210,52,0.4));}
+.coin1{top:8%;right:6%;animation-delay:0s;}
+.coin2{top:42%;left:3%;animation-delay:1.2s;font-size:1.3rem;}
+.coin3{top:62%;right:10%;font-size:1rem;animation-delay:2.1s;}
+.coin4{top:25%;right:20%;font-size:0.9rem;animation-delay:0.7s;opacity:0.35;}
+
+.hero-badge{
+  position:relative;z-index:3;
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.3);
+  border-radius:100px;padding:5px 13px;margin-bottom:18px;
+  font-size:0.72rem;font-weight:700;color:var(--green);
+  animation:fadeUp 0.5s ease both;
+  backdrop-filter:blur(8px);
+}
+.bdot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.5s ease-in-out infinite;}
+
+.bonus-3d{
+  text-align:center;margin-bottom:20px;
+  position:relative;z-index:3;
+  animation:fadeUp 0.5s ease 0.1s both;
+}
+.bonus-pre{font-family:'Anton',sans-serif;font-size:0.85rem;letter-spacing:5px;text-transform:uppercase;color:var(--grey);margin-bottom:4px;}
+.bonus-amount{
+  font-family:'Anton',sans-serif;font-size:6rem;line-height:0.88;letter-spacing:-3px;
+  background:linear-gradient(180deg,var(--gold3) 0%,var(--gold) 35%,var(--gold2) 75%,#cc7000 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 6px 16px rgba(255,210,52,0.45));
+  display:block;
+  animation:popIn 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+  transform:perspective(300px) rotateX(8deg);
+}
+.bonus-post{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:4px;color:var(--white);margin-top:4px;}
+.bonus-sub-txt{font-size:0.8rem;color:var(--grey);margin-top:6px;}
+
+/* MAIN CTA */
+.cta-wrap{position:relative;z-index:3;margin-bottom:20px;animation:fadeUp 0.5s ease 0.3s both;}
+.cta-btn{
+  display:block;width:100%;padding:19px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;border-radius:14px;cursor:pointer;text-align:center;
+  animation:glow 2s ease-in-out infinite;
+  position:relative;overflow:hidden;transition:transform 0.12s;
+}
+.cta-btn:hover{transform:scale(1.02);}
+.cta-btn:active{transform:scale(0.97);}
+.cta-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 2s linear infinite;}
+.cta-btn::after{content:'';position:absolute;inset:0;border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.cta-main{font-family:'Anton',sans-serif;font-size:1.25rem;letter-spacing:2px;color:#000;}
+.cta-sub{font-size:0.72rem;font-weight:700;color:rgba(0,0,0,0.5);margin-top:3px;}
+.cta-arrow{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:1.5rem;animation:bounce 1s ease-in-out infinite;}
+
+/* TRUST */
+.trust-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  position:relative;z-index:3;
+  animation:fadeUp 0.5s ease 0.4s both;
+}
+.ti{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;padding:9px 4px;text-align:center;
+  backdrop-filter:blur(8px);
+  transition:all 0.2s;
+}
+.ti:hover{border-color:rgba(255,210,52,0.3);background:rgba(255,210,52,0.05);}
+.ti-val{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:1px;color:var(--gold);}
+.ti-lbl{font-size:0.58rem;color:var(--grey);margin-top:1px;line-height:1.2;}
+
+/* ── DIVIDER ── */
+.divider{display:flex;align-items:center;gap:10px;padding:22px 18px 14px;position:relative;z-index:2;}
+.div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,210,52,0.2),transparent);}
+.div-txt{font-family:'Anton',sans-serif;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,210,52,0.4);}
+
+/* ── CASINO CARDS — FULL CASINO ATMOSPHERE ── */
+.casino-card{
+  margin:0 18px 12px;
+  background:var(--bg2);
+  border-radius:18px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.07);
+  position:relative;
+  transition:
+    transform 0.3s cubic-bezier(0.34,1.3,0.64,1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  cursor:pointer;
+  animation:cardEnter 0.5s ease both;
+  z-index:2;
+}
+.casino-card:hover{
+  transform:translateY(-5px) perspective(800px) rotateX(2deg) scale(1.01);
+  border-color:rgba(255,210,52,0.5);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,210,52,0.2),
+    0 0 30px rgba(255,210,52,0.1);
+}
+.casino-card:active{transform:translateY(-2px) scale(0.99);}
+
+/* top accent bar */
+.casino-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height 0.3s;}
+.casino-card:hover::before{height:4px;}
+.cc-gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));}
+.cc-green::before{background:linear-gradient(90deg,var(--green),#00c853,var(--green));}
+.cc-blue::before{background:linear-gradient(90deg,#00b0ff,#00e5ff,#00b0ff);}
+.cc-purple::before{background:linear-gradient(90deg,#9b5de5,#c77dff,#9b5de5);}
+.cc-orange::before{background:linear-gradient(90deg,#ff6d00,#ff9f00,#ff6d00);}
+.cc-red::before{background:linear-gradient(90deg,#f43f5e,#ff6b6b,#f43f5e);}
+
+/* inner glow on hover */
+.casino-card::after{
+  content:'';position:absolute;inset:0;border-radius:18px;
+  background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,210,52,0),transparent);
+  transition:background 0.3s;pointer-events:none;z-index:0;
+}
+.casino-card:hover::after{
+  background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,210,52,0.06),transparent);
+}
+
+/* shimmer overlay on hover */
+.card-shimmer{
+  position:absolute;inset:0;border-radius:18px;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,210,52,0.05) 50%,transparent 60%);
+  opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:1;
+}
+.casino-card:hover .card-shimmer{opacity:1;animation:shimmer 1.5s linear infinite;}
+
+/* RANK */
+.rank-badge{
+  position:absolute;top:12px;left:12px;z-index:3;
+  font-family:'Anton',sans-serif;font-size:0.68rem;letter-spacing:1px;
+  padding:3px 9px;border-radius:4px;
+  transition:all 0.2s;
+}
+.casino-card:hover .rank-badge{transform:scale(1.08);}
+.rb1{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;box-shadow:0 0 10px rgba(255,210,52,0.4);}
+.rb-def{background:rgba(255,255,255,0.07);color:var(--grey);border:1px solid rgba(255,255,255,0.1);}
+
+/* HOT BADGE */
+.hot-badge{
+  position:absolute;top:12px;right:12px;z-index:3;
+  font-family:'Anton',sans-serif;font-size:0.6rem;letter-spacing:1px;
+  padding:3px 8px;border-radius:4px;
+  background:rgba(255,61,61,0.15);color:var(--red);
+  border:1px solid rgba(255,61,61,0.25);
+  animation:blink 2s ease-in-out infinite;
+}
+
+.cc-top{display:flex;align-items:center;gap:13px;padding:16px 14px 12px;position:relative;z-index:2;}
+.cc-logo{
+  width:54px;height:54px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;flex-shrink:0;
+  background:var(--bg3);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.casino-card:hover .cc-logo{
+  transform:scale(1.08) rotate(-3deg);
+  box-shadow:0 6px 20px rgba(0,0,0,0.5),0 0 16px rgba(255,210,52,0.2);
+  border-color:rgba(255,210,52,0.3);
+}
+.cc-logo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);
+  border-radius:13px;
+}
+.cc-info{flex:1;position:relative;z-index:2;}
+.cc-name{
+  font-weight:900;font-size:1rem;color:var(--white);
+  transition:color 0.2s;
+}
+.casino-card:hover .cc-name{color:var(--gold);}
+.cc-desc{font-size:0.66rem;color:var(--grey);margin-top:3px;line-height:1.3;transition:color 0.2s;}
+.casino-card:hover .cc-desc{color:rgba(255,255,255,0.5);}
+.cc-score-wrap{text-align:right;flex-shrink:0;position:relative;z-index:2;}
+.cc-score-num{
+  font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:1px;
+  color:var(--white);line-height:1;transition:all 0.3s;
+}
+.casino-card:hover .cc-score-num{color:var(--gold);text-shadow:0 0 12px rgba(255,210,52,0.5);}
+.cc-stars{font-size:0.65rem;color:var(--gold);margin-top:1px;transition:filter 0.2s;}
+.casino-card:hover .cc-stars{filter:drop-shadow(0 0 4px rgba(255,210,52,0.6));}
+
+/* BONUS BOX */
+.cc-bonus-box{
+  margin:0 14px 12px;
+  background:linear-gradient(135deg,rgba(255,210,52,0.07),rgba(255,160,0,0.03));
+  border:1px solid rgba(255,210,52,0.14);
+  border-radius:11px;padding:12px;
+  position:relative;overflow:hidden;z-index:2;
+  transition:all 0.3s;
+}
+.casino-card:hover .cc-bonus-box{
+  border-color:rgba(255,210,52,0.35);
+  background:linear-gradient(135deg,rgba(255,210,52,0.1),rgba(255,160,0,0.05));
+  box-shadow:inset 0 0 20px rgba(255,210,52,0.04);
+}
+.cc-bonus-box::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;left:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);
+  animation:shimmer 3s linear infinite;
+}
+.bbl{font-size:0.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:3px;}
+.bbv{
+  font-family:'Anton',sans-serif;font-size:1.35rem;letter-spacing:1px;color:var(--gold);
+  transition:all 0.2s;
+}
+.casino-card:hover .bbv{text-shadow:0 0 12px rgba(255,210,52,0.5);}
+.bbs{font-size:0.68rem;color:var(--grey);margin-top:2px;}
+.bbw{font-size:0.68rem;font-weight:700;margin-top:5px;}
+.bbw.good{color:var(--green);}
+.bbw.warn{color:var(--gold2);}
+
+/* TAGS */
+.cc-tags{display:flex;gap:5px;flex-wrap:wrap;padding:0 14px 11px;position:relative;z-index:2;}
+.cctag{
+  font-size:0.6rem;font-weight:700;padding:3px 8px;border-radius:4px;
+  transition:all 0.2s;
+}
+.casino-card:hover .cctag{transform:translateY(-1px);}
+.tag-g{background:rgba(0,230,118,0.08);color:var(--green);border:1px solid rgba(0,230,118,0.18);}
+.tag-a{background:rgba(255,210,52,0.07);color:var(--gold);border:1px solid rgba(255,210,52,0.14);}
+.tag-w{background:rgba(255,255,255,0.04);color:var(--grey);border:1px solid rgba(255,255,255,0.07);}
+
+/* CARD CTA */
+.cc-cta-btn{
+  display:block;margin:0 14px 12px;padding:14px;
+  text-align:center;border-radius:11px;
+  font-weight:900;font-size:0.9rem;letter-spacing:1px;
+  cursor:pointer;border:none;
+  width:calc(100% - 28px);
+  position:relative;overflow:hidden;z-index:2;
+  transition:all 0.25s cubic-bezier(0.34,1.3,0.64,1);
+}
+.cc-cta-btn:hover{transform:scale(1.03);}
+.cc-cta-btn:active{transform:scale(0.97);}
+.cc-cta-btn::before{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:shimmer 2s linear infinite;
+}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;box-shadow:0 4px 16px rgba(255,210,52,0.25);}
+.btn-gold:hover{box-shadow:0 6px 24px rgba(255,210,52,0.45);}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.15);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+.cc-honest{display:flex;align-items:center;gap:5px;padding:0 14px 13px;font-size:0.68rem;font-weight:600;position:relative;z-index:2;}
+.ch-good{color:var(--green);}
+.ch-warn{color:var(--gold2);}
+
+/* ── BOTTOM CTA ── */
+.bottom-hero{
+  margin:8px 18px 20px;position:relative;overflow:hidden;z-index:2;
+  background:linear-gradient(135deg,rgba(255,210,52,0.1),rgba(255,160,0,0.04));
+  border:1px solid rgba(255,210,52,0.2);border-radius:18px;padding:24px 18px;
+  text-align:center;
+  transition:all 0.3s;
+}
+.bottom-hero:hover{
+  border-color:rgba(255,210,52,0.5);
+  box-shadow:0 0 40px rgba(255,210,52,0.08);
+}
+.bottom-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,210,52,0.012) 10px,rgba(255,210,52,0.012) 11px);pointer-events:none;}
+.bh-pre{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:7px;}
+.bh-title{font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:1px;line-height:1;margin-bottom:5px;}
+.bh-title span{color:var(--gold);}
+.bh-sub{font-size:0.78rem;color:var(--grey);margin-bottom:18px;line-height:1.5;}
+.bh-btn{
+  display:block;width:100%;padding:17px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;border-radius:12px;
+  font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:2px;color:#000;
+  cursor:pointer;position:relative;overflow:hidden;
+  animation:glow 2s ease-in-out infinite;
+  transition:transform 0.2s;
+}
+.bh-btn:hover{transform:scale(1.02);}
+.bh-btn:active{transform:scale(0.98);}
+.bh-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent);animation:shimmer 2s linear infinite;}
+
+/* ── FOOTER ── */
+.footer{padding:16px 18px 88px;border-top:1px solid rgba(255,255,255,0.05);position:relative;z-index:2;}
+.footer-logo{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--grey);margin-bottom:10px;}
+.footer-logo span{color:var(--gold);}
+.footer-links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0;}
+.footer-links a{font-size:0.68rem;color:var(--grey2);text-decoration:none;transition:color 0.15s;}
+.footer-links a:hover{color:var(--grey);}
+.footer-disc{font-size:0.62rem;color:rgba(255,255,255,0.16);line-height:1.6;}
+.age-badge{display:inline-block;font-family:'Anton',sans-serif;font-size:0.78rem;padding:3px 9px;border:1.5px solid var(--grey2);border-radius:3px;color:var(--grey2);margin-bottom:8px;}
+
+/* ── STICKY ── */
+.sticky{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:480px;
+  background:rgba(8,8,8,0.97);border-top:1px solid rgba(255,210,52,0.18);
+  padding:10px 18px 18px;z-index:300;display:none;
+  backdrop-filter:blur(16px);
+}
+.sticky.show{display:block;}
+.sticky-btn{
+  display:block;width:100%;padding:16px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;border-radius:12px;
+  font-family:'Anton',sans-serif;font-size:0.95rem;letter-spacing:2px;
+  color:#000;cursor:pointer;text-align:center;
+  animation:glow 2s ease-in-out infinite;
+  position:relative;overflow:hidden;transition:transform 0.15s;
+}
+.sticky-btn:hover{transform:scale(1.01);}
+.sticky-btn:active{transform:scale(0.98);}
+.sticky-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.28),transparent);animation:shimmer 2s linear infinite;}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:88px;left:18px;right:18px;z-index:999;
+  background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);
+  border-left:3px solid var(--gold);border-radius:9px;
+  padding:12px 14px;font-size:0.82rem;color:var(--white);
+  box-shadow:0 8px 28px rgba(0,0,0,0.7);
+  display:flex;align-items:center;gap:9px;
+  pointer-events:none;transition:all 0.25s;
+}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.hide{opacity:0;transform:translateY(8px);}
+
+/* RIPPLE */
+.ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(255,210,52,0.25);
+  transform:scale(0);animation:rippleAnim 0.6s ease-out forwards;
+  pointer-events:none;z-index:10;
+}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- URGENCY -->
+<div class="urgency-bar">
+  <div class="ub-dot"></div>
+  <span data-de="Angebot läuft ab in" data-en="Offer expires in">Angebot läuft ab in</span>
+  <div class="ub-timer" id="timer">23:47</div>
+  <div class="ub-dot"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo"><div class="ndot"></div>BONUS<span class="ng">FACTS</span></div>
+  <div class="lang-sw">
+    <div class="lb on" onclick="setLang('de')">DE</div>
+    <div class="lb" onclick="setLang('en')">EN</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="coin coin1">💰</div>
+  <div class="coin coin2">🎰</div>
+  <div class="coin coin3">⭐</div>
+  <div class="coin coin4">💎</div>
+
+  <div class="hero-badge">
+    <div class="bdot"></div>
+    <span data-de="Nur lizenzierte Casinos · Ehrliche Bewertung" data-en="Licensed only · Honest review">Nur lizenzierte Casinos · Ehrliche Bewertung</span>
+  </div>
+
+  <div class="bonus-3d">
+    <div class="bonus-pre" data-de="SICHER DIR JETZT" data-en="GRAB NOW">SICHER DIR JETZT</div>
+    <span class="bonus-amount">500€</span>
+    <div class="bonus-post" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bonus-sub-txt" data-de="+ bis zu 200 Freispiele gratis" data-en="+ up to 200 free spins free">+ bis zu 200 Freispiele gratis</div>
+  </div>
+
+  <div class="cta-wrap">
+    <button class="cta-btn" onclick="handleCTA('main',this)">
+      <div class="cta-main" data-de="JETZT BONUS SICHERN" data-en="GRAB BONUS NOW">JETZT BONUS SICHERN</div>
+      <div class="cta-sub" data-de="Kostenlos · Keine Anmeldung bei uns" data-en="Free · No signup here">Kostenlos · Keine Anmeldung bei uns</div>
+      <div class="cta-arrow">→</div>
+    </button>
+  </div>
+
+  <div class="trust-grid">
+    <div class="ti"><div class="ti-val">10</div><div class="ti-lbl" data-de="Top Casinos" data-en="Top Casinos">Top Casinos</div></div>
+    <div class="ti"><div class="ti-val" style="color:var(--green);">✓</div><div class="ti-lbl" data-de="Lizenziert" data-en="Licensed">Lizenziert</div></div>
+    <div class="ti"><div class="ti-val">0€</div><div class="ti-lbl" data-de="Für dich" data-en="For you">Für dich</div></div>
+    <div class="ti"><div class="ti-val" style="font-size:0.7rem;">FAIR</div><div class="ti-lbl" data-de="Bewertet" data-en="Rated">Bewertet</div></div>
+  </div>
+</div>
+
+<div class="divider"><div class="div-line"></div><div class="div-txt" data-de="TOP CASINOS 2026" data-en="TOP CASINOS 2026">TOP CASINOS 2026</div><div class="div-line"></div></div>
+
+<!-- ─── CASINO CARDS ─── -->
+
+<!-- 1. CASUMO -->
+<div class="casino-card cc-gold" onclick="handleCTA('casumo',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb1" data-de="#1 TOP-PICK" data-en="#1 TOP PICK">#1 TOP-PICK</div>
+  <div class="hot-badge">🔥 HOT</div>
+  <div class="cc-top">
+    <div class="cc-logo">🎠</div>
+    <div class="cc-info">
+      <div class="cc-name">Casumo</div>
+      <div class="cc-desc" data-de="Premium-Marke · Starkes Affiliate-Programm" data-en="Premium brand · Strong affiliate program">Premium-Marke · Starkes Affiliate-Programm</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">9.4</div><div class="cc-stars">★★★★★</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 300€</div>
+    <div class="bbs" data-de="+ täglich Freispiele · Gamification-System" data-en="+ daily free spins · Gamification system">+ täglich Freispiele · Gamification-System</div>
+    <div class="bbw good">✓ <span data-de="MGA lizenziert · Faire Bedingungen" data-en="MGA licensed · Fair terms">MGA lizenziert · Faire Bedingungen</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-g" data-de="✓ MGA Lizenz" data-en="✓ MGA">✓ MGA Lizenz</div>
+    <div class="cctag tag-a">Gamification</div>
+    <div class="cctag tag-w">Slots · Live</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🎠 BONUS JETZT SICHERN →" data-en="🎠 GRAB BONUS NOW →">🎠 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Premium-Marke mit fairen Konditionen" data-en="Premium brand with fair conditions">Premium-Marke mit fairen Konditionen</span></div>
+</div>
+
+<!-- 2. UNIBET -->
+<div class="casino-card cc-green" onclick="handleCTA('unibet',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#2</div>
+  <div class="cc-top">
+    <div class="cc-logo">🎯</div>
+    <div class="cc-info">
+      <div class="cc-name">Unibet</div>
+      <div class="cc-desc" data-de="Kindred Group · Professionelles Affiliate" data-en="Kindred Group · Pro affiliate">Kindred Group · Professionelles Affiliate</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">9.2</div><div class="cc-stars">★★★★★</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="STARTBONUS" data-en="WELCOME BONUS">STARTBONUS</div>
+    <div class="bbv" data-de="Bis zu 200€" data-en="Up to €200">Bis zu 200€</div>
+    <div class="bbs" data-de="Sport + Casino kombiniert" data-en="Sports + Casino combined">Sport + Casino kombiniert</div>
+    <div class="bbw good">✓ <span data-de="Kindred Group — sehr vertrauenswürdig" data-en="Kindred Group — highly trusted">Kindred Group — sehr vertrauenswürdig</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-g" data-de="✓ Top Affiliate" data-en="✓ Top Affiliate">✓ Top Affiliate</div>
+    <div class="cctag tag-w">Sport · Casino</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🎯 BONUS JETZT SICHERN →" data-en="🎯 GRAB BONUS NOW →">🎯 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Kindred Group — einer der seriösesten Anbieter" data-en="Kindred Group — one of the most reputable">Kindred Group — einer der seriösesten Anbieter</span></div>
+</div>
+
+<!-- 3. BETSSON -->
+<div class="casino-card cc-blue" onclick="handleCTA('betsson',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#3</div>
+  <div class="cc-top">
+    <div class="cc-logo">🔵</div>
+    <div class="cc-info">
+      <div class="cc-name">Betsson</div>
+      <div class="cc-desc" data-de="Schwedischer Konzern · Sehr verlässlich" data-en="Swedish company · Very reliable">Schwedischer Konzern · Sehr verlässlich</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">9.1</div><div class="cc-stars">★★★★★</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 200€</div>
+    <div class="bbs" data-de="+ 50 Freispiele · Schnelle Auszahlungen" data-en="+ 50 free spins · Fast payouts">+ 50 Freispiele · Schnelle Auszahlungen</div>
+    <div class="bbw good">✓ <span data-de="Börsennotiert · Maximale Sicherheit" data-en="Listed · Maximum safety">Börsennotiert · Maximale Sicherheit</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-g" data-de="✓ Sehr verlässlich" data-en="✓ Very reliable">✓ Sehr verlässlich</div>
+    <div class="cctag tag-a">Slots · Live · Sport</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🔵 BONUS JETZT SICHERN →" data-en="🔵 GRAB BONUS NOW →">🔵 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Schwedischer Börsenkonzern — sehr sicher" data-en="Swedish listed company — very safe">Schwedischer Börsenkonzern — sehr sicher</span></div>
+</div>
+
+<!-- 4. CASINOLAND -->
+<div class="casino-card cc-purple" onclick="handleCTA('casinoland',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#4</div>
+  <div class="cc-top">
+    <div class="cc-logo">🎪</div>
+    <div class="cc-info">
+      <div class="cc-name">Casinoland</div>
+      <div class="cc-desc" data-de="Viele Slots · Gute CPA-Deals" data-en="Many slots · Good CPA deals">Viele Slots · Gute CPA-Deals</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.8</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 200€</div>
+    <div class="bbs" data-de="+ 120 Freispiele" data-en="+ 120 free spins">+ 120 Freispiele</div>
+    <div class="bbw good">✓ <span data-de="Starke Slot-Auswahl · CPA-optimiert" data-en="Strong slots · CPA optimized">Starke Slot-Auswahl · CPA-optimiert</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-a">Slots-Fokus</div>
+    <div class="cctag tag-g" data-de="✓ Lizenziert" data-en="✓ Licensed">✓ Lizenziert</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🎪 BONUS JETZT SICHERN →" data-en="🎪 GRAB BONUS NOW →">🎪 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Gut für Slots-Liebhaber" data-en="Great for slots lovers">Gut für Slots-Liebhaber</span></div>
+</div>
+
+<!-- 5. WAZAMBA -->
+<div class="casino-card cc-orange" onclick="handleCTA('wazamba',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#5</div>
+  <div class="cc-top">
+    <div class="cc-logo">🦁</div>
+    <div class="cc-info">
+      <div class="cc-name">Wazamba</div>
+      <div class="cc-desc" data-de="Beliebtes Themen-Casino · Treue-System" data-en="Popular themed casino · Loyalty">Beliebtes Themen-Casino · Treue-System</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.7</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="STARTBONUS" data-en="WELCOME BONUS">STARTBONUS</div>
+    <div class="bbv">100% bis 500€</div>
+    <div class="bbs" data-de="+ 200 Freispiele · Avatare & Quests" data-en="+ 200 free spins · Avatars & Quests">+ 200 Freispiele · Avatare & Quests</div>
+    <div class="bbw good">✓ <span data-de="Einzigartiges Spielerlebnis" data-en="Unique gaming experience">Einzigartiges Spielerlebnis</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-g">✓ Gamification</div>
+    <div class="cctag tag-a">Themen-Design</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🦁 BONUS JETZT SICHERN →" data-en="🦁 GRAB BONUS NOW →">🦁 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Einzigartiges Casino mit Spaßfaktor" data-en="Unique casino, lots of fun">Einzigartiges Casino mit Spaßfaktor</span></div>
+</div>
+
+<!-- 6. N1BET -->
+<div class="casino-card cc-blue" onclick="handleCTA('n1bet',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#6</div>
+  <div class="cc-top">
+    <div class="cc-logo">🎮</div>
+    <div class="cc-info">
+      <div class="cc-name">N1Bet</div>
+      <div class="cc-desc" data-de="N1-Gruppe · Sehr affiliate-freundlich" data-en="N1 Group · Very affiliate-friendly">N1-Gruppe · Sehr affiliate-freundlich</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.6</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 500€</div>
+    <div class="bbs" data-de="+ 200 Freispiele" data-en="+ 200 free spins">+ 200 Freispiele</div>
+    <div class="bbw good">✓ <span data-de="N1-Gruppe — affiliate-optimiert" data-en="N1 Group — affiliate optimized">N1-Gruppe — affiliate-optimiert</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-g">✓ Affiliate-Friendly</div>
+    <div class="cctag tag-w">Sport · Slots · Live</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🎮 BONUS JETZT SICHERN →" data-en="🎮 GRAB BONUS NOW →">🎮 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Gute Konditionen für Spieler & Affiliates" data-en="Good for players & affiliates">Gute Konditionen für Spieler & Affiliates</span></div>
+</div>
+
+<!-- 7. GOLDSPIN -->
+<div class="casino-card cc-gold" onclick="handleCTA('goldspin',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#7</div>
+  <div class="cc-top">
+    <div class="cc-logo">✨</div>
+    <div class="cc-info">
+      <div class="cc-name">GoldSpin</div>
+      <div class="cc-desc" data-de="Hoher Bonus · Gute Conversion" data-en="High bonus · Good conversion">Hoher Bonus · Gute Conversion</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.5</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="MEGA BONUS" data-en="MEGA BONUS">MEGA BONUS</div>
+    <div class="bbv" data-de="Bis zu 1.000€" data-en="Up to €1,000">Bis zu 1.000€</div>
+    <div class="bbs" data-de="+ 250 Freispiele" data-en="+ 250 free spins">+ 250 Freispiele</div>
+    <div class="bbw warn">⚠ <span data-de="Bedingungen vor Einzahlung prüfen" data-en="Check terms before depositing">Bedingungen vor Einzahlung prüfen</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-a">Mega-Bonus</div>
+    <div class="cctag tag-w">Slots · Live</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="✨ BONUS JETZT SICHERN →" data-en="✨ GRAB BONUS NOW →">✨ BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-warn">⚠ <span data-de="Hoher Bonus — Bedingungen beachten" data-en="High bonus — check terms">Hoher Bonus — Bedingungen beachten</span></div>
+</div>
+
+<!-- 8. GLORION -->
+<div class="casino-card cc-purple" onclick="handleCTA('glorion',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#8</div>
+  <div class="cc-top">
+    <div class="cc-logo">👑</div>
+    <div class="cc-info">
+      <div class="cc-name">Glorion</div>
+      <div class="cc-desc" data-de="7.250+ Spiele · Starkes Neukunden-Angebot" data-en="7,250+ games · Strong new player offer">7.250+ Spiele · Starkes Neukunden-Angebot</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.5</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 500€</div>
+    <div class="bbs" data-de="7.250+ Spiele verfügbar" data-en="7,250+ games available">7.250+ Spiele verfügbar</div>
+    <div class="bbw good">✓ <span data-de="Riesige Spielauswahl" data-en="Massive game selection">Riesige Spielauswahl</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-a">7.250+ Spiele</div>
+    <div class="cctag tag-g">✓ Lizenziert</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="👑 BONUS JETZT SICHERN →" data-en="👑 GRAB BONUS NOW →">👑 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Beste Spielauswahl im Vergleich" data-en="Best game selection">Beste Spielauswahl im Vergleich</span></div>
+</div>
+
+<!-- 9. DUDESPIN -->
+<div class="casino-card cc-green" onclick="handleCTA('dudespin',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#9</div>
+  <div class="cc-top">
+    <div class="cc-logo">🎲</div>
+    <div class="cc-info">
+      <div class="cc-name">DudeSpin</div>
+      <div class="cc-desc" data-de="MGA · Cashback · Turniere" data-en="MGA · Cashback · Tournaments">MGA · Cashback · Turniere</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.4</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 500€</div>
+    <div class="bbs" data-de="+ Cashback + Turniere" data-en="+ Cashback + Tournaments">+ Cashback + Turniere</div>
+    <div class="bbw good">✓ <span data-de="MGA lizenziert · Cashback-System" data-en="MGA licensed · Cashback system">MGA lizenziert · Cashback-System</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-g">✓ MGA Lizenz</div>
+    <div class="cctag tag-a">Cashback</div>
+    <div class="cctag tag-w">Turniere</div>
+  </div>
+  <button class="cc-cta-btn btn-gold" data-de="🎲 BONUS JETZT SICHERN →" data-en="🎲 GRAB BONUS NOW →">🎲 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="MGA-lizenziert · Cashback ist ein echtes Plus" data-en="MGA licensed · Cashback is a real plus">MGA-lizenziert · Cashback ist ein echtes Plus</span></div>
+</div>
+
+<!-- 10. BETSTRO -->
+<div class="casino-card cc-red" onclick="handleCTA('betstro',this)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#10</div>
+  <div class="cc-top">
+    <div class="cc-logo">⚡</div>
+    <div class="cc-info">
+      <div class="cc-name">Betstro</div>
+      <div class="cc-desc" data-de="3.000+ Spiele · Wächst schnell" data-en="3,000+ games · Growing fast">3.000+ Spiele · Wächst schnell</div>
+    </div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.3</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbv">100% bis 500€</div>
+    <div class="bbs" data-de="3.000+ Spiele · Schnell wachsend" data-en="3,000+ games · Fast growing">3.000+ Spiele · Schnell wachsend</div>
+    <div class="bbw good">✓ <span data-de="Aufsteiger mit gutem Potenzial" data-en="Rising star with good potential">Aufsteiger mit gutem Potenzial</span></div>
+  </div>
+  <div class="cc-tags">
+    <div class="cctag tag-a">3.000+ Spiele</div>
+    <div class="cctag tag-g">✓ Wächst schnell</div>
+  </div>
+  <button class="cc-cta-btn btn-outline" data-de="⚡ CASINO ANSEHEN →" data-en="⚡ VIEW CASINO →">⚡ CASINO ANSEHEN →</button>
+  <div class="cc-honest ch-good">✓ <span data-de="Neuer Aufsteiger — gut für Early Adopters" data-en="Rising star — good for early adopters">Neuer Aufsteiger — gut für Early Adopters</span></div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-hero" onclick="handleCTA('main',this)">
+  <div class="bh-pre" data-de="NUR HEUTE" data-en="TODAY ONLY">NUR HEUTE</div>
+  <div class="bh-title" data-de="Bis zu <span>500€</span><br>Bonus sichern" data-en="Grab up to<br><span>€500</span> Bonus">Bis zu <span>500€</span><br>Bonus sichern</div>
+  <div class="bh-sub" data-de="Kein Risiko auf BonusFacts. Direkt zum besten Bonus für dich." data-en="No risk on BonusFacts. Direct to the best bonus.">Kein Risiko auf BonusFacts. Direkt zum besten Bonus für dich.</div>
+  <button class="bh-btn" data-de="🎰 JETZT BONUS SICHERN →" data-en="🎰 GRAB BONUS NOW →">🎰 JETZT BONUS SICHERN →</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="age-badge">18+</div>
+  <div class="footer-logo">BONUS<span>FACTS</span>.COM</div>
+  <div class="footer-links">
+    <a href="#" data-de="Impressum" data-en="Imprint">Impressum</a>
+    <a href="#" data-de="Datenschutz" data-en="Privacy">Datenschutz</a>
+    <a href="#" data-de="Affiliate-Info" data-en="Affiliate Info">Affiliate-Info</a>
+    <a href="#" data-de="Spielerschutz" data-en="Responsible Gaming">Spielerschutz</a>
+  </div>
+  <div class="footer-disc" data-de="BonusFacts ist eine Affiliate-Plattform. Wir erhalten Provision wenn du über unsere Links ein Casino-Konto erstellst — ohne Mehrkosten für dich. Alle empfohlenen Casinos besitzen gültige Glücksspiellizenzen. Glücksspiel kann süchtig machen — Hilfe: bzga.de · 18+" data-en="BonusFacts is an affiliate platform. We earn a commission when you sign up via our links — at no extra cost. All recommended casinos hold valid licenses. Gambling can be addictive — help: begambleaware.org · 18+">BonusFacts ist eine Affiliate-Plattform. Wir erhalten Provision wenn du über unsere Links ein Casino-Konto erstellst — ohne Mehrkosten für dich. Alle empfohlenen Casinos besitzen gültige Glücksspiellizenzen. Glücksspiel kann süchtig machen — Hilfe: bzga.de · 18+</div>
+</div>
+
+<!-- STICKY -->
+<div class="sticky" id="sticky">
+  <button class="sticky-btn" onclick="handleCTA('main',this)" data-de="🎰 BIS ZU 500€ BONUS SICHERN →" data-en="🎰 GRAB UP TO €500 BONUS →">🎰 BIS ZU 500€ BONUS SICHERN →</button>
+</div>
+
+<div class="toast hide" id="toast"><span id="tMsg"></span></div>
+
+<script>
+'use strict';
+let lang = 'de';
+
+// ── AFFILIATE LINKS ───────────────────────────────────
+const LINKS = {
+  main:       'https://bonusfacts.com',
+  casumo:     'https://casumo.com',
+  unibet:     'https://unibet.com',
+  betsson:    'https://betsson.com',
+  casinoland: 'https://casinoland.com',
+  wazamba:    'https://wazamba.com',
+  n1bet:      'https://n1bet.com',
+  goldspin:   'https://goldspin.com',
+  glorion:    'https://glorion.com',
+  dudespin:   'https://dudespin1.com',
+  betstro:    'https://betstro.com',
+};
+
+// ── CTA + RIPPLE ──────────────────────────────────────
+function handleCTA(casino, el) {
+  if (el) createRipple(el, event);
+  spawnParticleBurst();
+  // window.location.href = LINKS[casino] || LINKS.main;
+  showToast('🎰 ' + (lang==='de' ? 'Weiterleitung...' : 'Redirecting...'));
+}
+
+function createRipple(el, e) {
+  const rect = el.getBoundingClientRect();
+  const x = (e?.clientX || rect.left + rect.width/2) - rect.left;
+  const y = (e?.clientY || rect.top + rect.height/2) - rect.top;
+  const size = Math.max(rect.width, rect.height);
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${x-size/2}px;top:${y-size/2}px;`;
+  el.style.position = 'relative';
+  el.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 700);
+}
+
+// ── PARTICLE SYSTEM ───────────────────────────────────
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor(x, y, burst) {
+    this.x = x || Math.random() * canvas.width;
+    this.y = y || Math.random() * canvas.height;
+    this.size = burst ? Math.random() * 6 + 3 : Math.random() * 2 + 1;
+    this.speedX = burst ? (Math.random()-0.5)*8 : (Math.random()-0.5)*0.4;
+    this.speedY = burst ? (Math.random()-2)*6   : -Math.random()*0.8 - 0.2;
+    this.opacity = burst ? 1 : Math.random()*0.4+0.1;
+    this.decay   = burst ? 0.018 : 0.003;
+    this.color   = Math.random() > 0.5 ? '#ffd234' : Math.random() > 0.5 ? '#ffffff' : '#ff9f00';
+    this.burst   = burst || false;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.burst) { this.speedY += 0.15; this.speedX *= 0.98; }
+    this.opacity -= this.decay;
+  }
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, this.opacity);
+    ctx.fillStyle   = this.color;
+    ctx.shadowBlur  = this.burst ? 8 : 4;
+    ctx.shadowColor = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+// ambient particles
+for (let i = 0; i < 30; i++) particles.push(new Particle());
+
+function spawnParticleBurst() {
+  const cx = canvas.width / 2, cy = canvas.height * 0.3;
+  for (let i = 0; i < 28; i++) particles.push(new Particle(cx, cy, true));
+}
+
+function animParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles = particles.filter(p => p.opacity > 0);
+  particles.forEach(p => { p.update(); p.draw(); });
+  // refill ambient
+  while (particles.filter(p => !p.burst).length < 30) particles.push(new Particle());
+  requestAnimationFrame(animParticles);
+}
+animParticles();
+
+// ── LANG ──────────────────────────────────────────────
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lb').forEach((b,i) => b.classList.toggle('on', ['de','en'][i]===l));
+  document.querySelectorAll('[data-de]').forEach(el => {
+    const v = el.getAttribute('data-'+l);
+    if (v) el.innerHTML = v;
+  });
+  document.documentElement.lang = l;
+}
+
+// ── TIMER ─────────────────────────────────────────────
+let secs = 23*60+47;
+setInterval(() => {
+  secs--; if(secs<0) secs=24*60;
+  const m=Math.floor(secs/60), s=secs%60;
+  const el=document.getElementById('timer');
+  if(el) el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}, 1000);
+
+// ── STICKY ────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('sticky').classList.toggle('show', window.scrollY > 300);
+}, {passive:true});
+
+// ── TOAST ─────────────────────────────────────────────
+let tt;
+function showToast(msg) {
+  clearTimeout(tt);
+  const el = document.getElementById('toast');
+  document.getElementById('tMsg').textContent = msg;
+  el.className = 'toast show';
+  tt = setTimeout(() => el.className = 'toast hide', 3000);
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.animationDelay = (i * 0.08) + 's';
+      e.target.style.opacity = '1';
+    }
+  });
+}, {threshold:0.1});
+document.querySelectorAll('.casino-card').forEach(c => {
+  c.style.opacity = '0';
+  io.observe(c);
+});
+</script>
+</body>
+</html>
