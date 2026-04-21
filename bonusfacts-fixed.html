@@ -187,6 +187,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 .cookie-bar.hidden{transform:translateY(110%);}
 .cookie-txt{font-size:0.65rem;color:var(--grey);line-height:1.5;flex:1;}
 .cookie-btn{flex-shrink:0;background:var(--gold);border:none;border-radius:8px;padding:9px 16px;font-weight:800;font-size:0.7rem;color:#000;cursor:pointer;white-space:nowrap;}
+/* FREE SPINS SPLIT LAYOUT */
+.bb-split{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.bb-left{}
+.bb-right{background:rgba(255,210,52,0.08);border:1px solid rgba(255,210,52,0.22);border-radius:9px;padding:9px 8px;text-align:center;position:relative;overflow:hidden;}
+.bb-right::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent);pointer-events:none;}
+.casino-card:hover .bb-right{border-color:rgba(255,210,52,0.5);background:rgba(255,210,52,0.13);box-shadow:0 0 16px rgba(255,210,52,0.1);}
+.fs-num{font-family:'Anton',sans-serif;font-size:2.2rem;letter-spacing:-1px;color:var(--gold);line-height:1;transition:all 0.3s;}
+.casino-card:hover .fs-num{text-shadow:0 0 16px rgba(255,210,52,0.7);}
+.fs-lbl{font-size:0.56rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,210,52,0.6);margin-top:2px;}
+.fs-none .fs-num{font-size:1.1rem;color:var(--grey);}
 /* WAGERING REQUIREMENTS */
 .cc-wager{display:flex;gap:5px;flex-wrap:wrap;padding:0 14px 10px;position:relative;z-index:2;}
 .wi{font-size:0.6rem;color:var(--grey);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:5px;padding:3px 8px;}
@@ -297,8 +307,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 300€</div>
-    <div class="bbs" data-de="+ täglich Freispiele · Gamification-System" data-en="+ daily free spins · Gamification">+ täglich Freispiele · Gamification-System</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 300€</div>
+        <div class="bbs" data-de="Einzahlungsbonus" data-en="Deposit bonus">Einzahlungsbonus</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">50</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="MGA lizenziert · Faire Bedingungen" data-en="MGA licensed · Fair terms">MGA lizenziert · Faire Bedingungen</span></div>
   </div>
   <div class="cc-tags">
@@ -332,8 +350,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="STARTBONUS" data-en="WELCOME BONUS">STARTBONUS</div>
-    <div class="bbv" data-de="Bis zu 200€" data-en="Up to €200">Bis zu 200€</div>
-    <div class="bbs" data-de="Sport + Casino kombiniert" data-en="Sports + Casino combined">Sport + Casino kombiniert</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv" data-de="Bis zu 200€" data-en="Up to €200">Bis zu 200€</div>
+        <div class="bbs" data-de="Sport + Casino" data-en="Sports + Casino">Sport + Casino</div>
+      </div>
+      <div class="bb-right fs-none">
+        <div class="fs-num">—</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="Kindred Group — sehr vertrauenswürdig" data-en="Kindred Group — highly trusted">Kindred Group — sehr vertrauenswürdig</span></div>
   </div>
   <div class="cc-tags">
@@ -366,8 +392,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 200€</div>
-    <div class="bbs" data-de="+ 50 Freispiele · Schnelle Auszahlungen" data-en="+ 50 free spins · Fast payouts">+ 50 Freispiele · Schnelle Auszahlungen</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 200€</div>
+        <div class="bbs" data-de="Schnelle Auszahlungen" data-en="Fast payouts">Schnelle Auszahlungen</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">50</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="Börsennotiert · Maximale Sicherheit" data-en="Listed · Maximum safety">Börsennotiert · Maximale Sicherheit</span></div>
   </div>
   <div class="cc-tags">
@@ -400,8 +434,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 200€</div>
-    <div class="bbs" data-de="+ 120 Freispiele" data-en="+ 120 free spins">+ 120 Freispiele</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 200€</div>
+        <div class="bbs" data-de="Slots-Fokus" data-en="Slots focus">Slots-Fokus</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">120</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="Starke Slot-Auswahl · CPA-optimiert" data-en="Strong slots · CPA optimized">Starke Slot-Auswahl · CPA-optimiert</span></div>
   </div>
   <div class="cc-tags">
@@ -434,8 +476,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="STARTBONUS" data-en="WELCOME BONUS">STARTBONUS</div>
-    <div class="bbv">100% bis 500€</div>
-    <div class="bbs" data-de="+ 200 Freispiele · Avatare & Quests" data-en="+ 200 free spins · Avatars & Quests">+ 200 Freispiele · Avatare & Quests</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 500€</div>
+        <div class="bbs" data-de="Avatare &amp; Quests" data-en="Avatars &amp; Quests">Avatare &amp; Quests</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">200</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="Einzigartiges Spielerlebnis" data-en="Unique gaming experience">Einzigartiges Spielerlebnis</span></div>
   </div>
   <div class="cc-tags">
@@ -468,8 +518,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 500€</div>
-    <div class="bbs" data-de="+ 200 Freispiele" data-en="+ 200 free spins">+ 200 Freispiele</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 500€</div>
+        <div class="bbs" data-de="N1-Gruppe" data-en="N1 Group">N1-Gruppe</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">200</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="N1-Gruppe — affiliate-optimiert" data-en="N1 Group — affiliate optimized">N1-Gruppe — affiliate-optimiert</span></div>
   </div>
   <div class="cc-tags">
@@ -502,8 +560,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="MEGA BONUS" data-en="MEGA BONUS">MEGA BONUS</div>
-    <div class="bbv" data-de="Bis zu 1.000€" data-en="Up to €1,000">Bis zu 1.000€</div>
-    <div class="bbs" data-de="+ 250 Freispiele" data-en="+ 250 free spins">+ 250 Freispiele</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv" data-de="Bis zu 1.000€" data-en="Up to €1,000">Bis zu 1.000€</div>
+        <div class="bbs" data-de="Mega-Paket" data-en="Mega package">Mega-Paket</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">250</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw warn">⚠ <span data-de="Bedingungen vor Einzahlung prüfen" data-en="Check terms before depositing">Bedingungen vor Einzahlung prüfen</span></div>
   </div>
   <div class="cc-tags">
@@ -536,8 +602,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 500€</div>
-    <div class="bbs" data-de="7.250+ Spiele verfügbar" data-en="7,250+ games available">7.250+ Spiele verfügbar</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 500€</div>
+        <div class="bbs" data-de="7.250+ Spiele" data-en="7,250+ games">7.250+ Spiele</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">100</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="Riesige Spielauswahl" data-en="Massive game selection">Riesige Spielauswahl</span></div>
   </div>
   <div class="cc-tags">
@@ -570,8 +644,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 500€</div>
-    <div class="bbs" data-de="+ Cashback + Turniere" data-en="+ Cashback + Tournaments">+ Cashback + Turniere</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 500€</div>
+        <div class="bbs" data-de="+ Cashback + Turniere" data-en="+ Cashback + Tournaments">+ Cashback + Turniere</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">150</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="MGA lizenziert · Cashback-System" data-en="MGA licensed · Cashback system">MGA lizenziert · Cashback-System</span></div>
   </div>
   <div class="cc-tags">
@@ -605,8 +687,16 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   </div>
   <div class="cc-bonus-box">
     <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bbv">100% bis 500€</div>
-    <div class="bbs" data-de="3.000+ Spiele · Schnell wachsend" data-en="3,000+ games · Fast growing">3.000+ Spiele · Schnell wachsend</div>
+    <div class="bb-split">
+      <div class="bb-left">
+        <div class="bbv">100% bis 500€</div>
+        <div class="bbs" data-de="3.000+ Spiele" data-en="3,000+ games">3.000+ Spiele</div>
+      </div>
+      <div class="bb-right">
+        <div class="fs-num">75</div>
+        <div class="fs-lbl">FREISPIELE</div>
+      </div>
+    </div>
     <div class="bbw good">✓ <span data-de="Aufsteiger mit gutem Potenzial" data-en="Rising star with good potential">Aufsteiger mit gutem Potenzial</span></div>
   </div>
   <div class="cc-tags">
