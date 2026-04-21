@@ -223,6 +223,90 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 /* AFFILIATE NOTICE */
 .aff-notice{margin:0 18px 14px;background:rgba(255,210,52,0.02);border:1px solid rgba(255,210,52,0.08);border-radius:10px;padding:10px 14px;font-size:0.63rem;color:rgba(255,255,255,0.28);line-height:1.6;position:relative;z-index:2;}
 .aff-notice b{color:rgba(255,210,52,0.45);}
+/* MID-PAGE PROMO BANNER */
+.mid-promo{
+  margin:4px 18px 12px;
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  height:220px;
+  cursor:pointer;
+  border:1px solid rgba(255,210,52,0.25);
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+  z-index:2;
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.mid-promo:hover{transform:scale(1.01);box-shadow:0 12px 48px rgba(255,210,52,0.15);}
+.mid-promo-img{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:55%;
+  object-fit:cover;
+  object-position:center top;
+}
+.mid-promo-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(8,8,8,0.97) 35%,rgba(8,8,8,0.6) 65%,rgba(8,8,8,0.1) 100%);
+  pointer-events:none;
+}
+.mid-promo-content{
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  max-width:55%;
+}
+.mp-tag{
+  font-size:0.65rem;
+  font-weight:800;
+  letter-spacing:2px;
+  color:var(--red);
+  margin-bottom:5px;
+  animation:blink 2s ease-in-out infinite;
+}
+.mp-title{
+  font-family:'Anton',sans-serif;
+  font-size:0.7rem;
+  letter-spacing:4px;
+  color:var(--grey);
+  text-transform:uppercase;
+}
+.mp-amount{
+  font-family:'Anton',sans-serif;
+  font-size:3.2rem;
+  line-height:0.9;
+  letter-spacing:-2px;
+  background:linear-gradient(180deg,var(--gold3),var(--gold) 40%,var(--gold2) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  filter:drop-shadow(0 3px 12px rgba(255,210,52,0.4));
+  margin:4px 0 3px;
+}
+.mp-sub{
+  font-size:0.72rem;
+  color:rgba(255,255,255,0.55);
+  font-weight:700;
+  margin-bottom:12px;
+}
+.mp-cta{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000;
+  font-family:'Anton',sans-serif;
+  font-size:0.78rem;
+  letter-spacing:1px;
+  padding:9px 16px;
+  border-radius:8px;
+  animation:glow 2s ease-in-out infinite;
+  position:relative;
+  overflow:hidden;
+}
+.mp-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 2s linear infinite;}
 /* HERO GIRL */
 .hero-girl{
   position:absolute;
@@ -398,6 +482,19 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> Bis zu 3.500€ + 200 FS. Welcome-Paket über 4 Einzahlungen. 35x Umsatz auf Bonus. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('woocasino', this, event)">🎰 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ Top-Wahl für Krypto-Spieler</div>
+</div>
+
+<!-- MID-PAGE PROMO BANNER -->
+<div class="mid-promo" onclick="handleCTA('main', this, event)">
+  <img class="mid-promo-img" src="images/casino_girl2.png" alt="">
+  <div class="mid-promo-overlay"></div>
+  <div class="mid-promo-content">
+    <div class="mp-tag" data-de="🔥 NUR HEUTE" data-en="🔥 TODAY ONLY">🔥 NUR HEUTE</div>
+    <div class="mp-title" data-de="BIS ZU" data-en="UP TO">BIS ZU</div>
+    <div class="mp-amount">3.500€</div>
+    <div class="mp-sub" data-de="+ 200 Freispiele gratis" data-en="+ 200 Free Spins free">+ 200 Freispiele gratis</div>
+    <div class="mp-cta" data-de="BONUS JETZT SICHERN →" data-en="CLAIM BONUS NOW →">BONUS JETZT SICHERN →</div>
+  </div>
 </div>
 
 <!-- 4. COOKIECASINO -->
