@@ -249,7 +249,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 .mid-promo-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(90deg,rgba(8,8,8,0.97) 35%,rgba(8,8,8,0.6) 65%,rgba(8,8,8,0.1) 100%);
+  background:linear-gradient(90deg,rgba(8,8,8,0.96) 30%,rgba(8,8,8,0.35) 55%,rgba(8,8,8,0.0) 100%);
   pointer-events:none;
 }
 .mid-promo-content{
@@ -307,6 +307,20 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   overflow:hidden;
 }
 .mp-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 2s linear infinite;}
+/* Second promo variant — girl LEFT, text RIGHT */
+.mid-promo-img2{
+  left:0;
+  right:auto;
+  object-position:center top;
+}
+.mid-promo-overlay2{
+  background:linear-gradient(270deg,rgba(8,8,8,0.96) 30%,rgba(8,8,8,0.35) 55%,rgba(8,8,8,0.0) 100%) !important;
+}
+.mid-promo-dark .mid-promo-content{
+  left:auto;
+  right:18px;
+  text-align:right;
+}
 /* HERO GIRL */
 .hero-girl{
   position:absolute;
@@ -316,8 +330,8 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   z-index:1;
   pointer-events:none;
   object-fit:contain;
-  -webkit-mask-image:linear-gradient(to left,rgba(0,0,0,0.9) 55%,transparent 100%);
-  mask-image:linear-gradient(to left,rgba(0,0,0,0.9) 55%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to left,black 70%,transparent 100%);
+  mask-image:linear-gradient(to left,black 70%,transparent 100%);
   filter:drop-shadow(-14px 0 28px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(255,120,0,0.18));
 }
 .hero-girl-glow{
@@ -645,6 +659,19 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> Bis zu 3.500€ + 260 FS. Welcome-Paket über 4 Einzahlungen. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('casinochan', this, event)">🎰 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ Einzigartiges Design mit starkem Bonuspaket</div>
+</div>
+
+<!-- MID-PAGE PROMO BANNER 2 -->
+<div class="mid-promo mid-promo-dark" onclick="handleCTA('main', this, event)">
+  <img class="mid-promo-img mid-promo-img2" src="images/casino_girl3.png" alt="">
+  <div class="mid-promo-overlay mid-promo-overlay2"></div>
+  <div class="mid-promo-content">
+    <div class="mp-tag" data-de="💎 EXKLUSIV" data-en="💎 EXCLUSIVE">💎 EXKLUSIV</div>
+    <div class="mp-title" data-de="JETZT SPIELEN" data-en="PLAY NOW">JETZT SPIELEN</div>
+    <div class="mp-amount">400%</div>
+    <div class="mp-sub" data-de="Bonus auf deine erste Einzahlung" data-en="Bonus on your first deposit">Bonus auf deine erste Einzahlung</div>
+    <div class="mp-cta" data-de="JETZT STARTEN →" data-en="START NOW →">JETZT STARTEN →</div>
+  </div>
 </div>
 
 <!-- 10. MASONSLOTS -->
