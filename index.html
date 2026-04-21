@@ -169,9 +169,65 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 .toast.show{opacity:1;transform:translateY(0);}
 .toast.hide{opacity:0;transform:translateY(8px);}
 .ripple{position:absolute;border-radius:50%;background:rgba(255,210,52,0.25);transform:scale(0);animation:rippleAnim 0.6s ease-out forwards;pointer-events:none;z-index:10;}
+/* AGE GATE */
+.age-gate{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.97);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
+.age-gate.hidden{display:none;}
+.age-gate-box{background:var(--bg2);border:1px solid rgba(255,210,52,0.25);border-radius:22px;padding:36px 24px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 0 80px rgba(255,210,52,0.08);}
+.age-gate-icon{font-size:3.2rem;margin-bottom:14px;}
+.age-gate-title{font-family:'Anton',sans-serif;font-size:1.9rem;letter-spacing:2px;color:var(--white);margin-bottom:8px;}
+.age-gate-title span{color:var(--gold);}
+.age-gate-sub{font-size:0.8rem;color:var(--grey);line-height:1.7;margin-bottom:26px;}
+.age-confirm{display:block;width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:13px;padding:17px;font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:2px;color:#000;cursor:pointer;margin-bottom:10px;transition:transform 0.15s;animation:glow 2s ease-in-out infinite;}
+.age-confirm:active{transform:scale(0.97);}
+.age-decline{display:block;width:100%;background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:13px;padding:12px;font-size:0.78rem;color:var(--grey);cursor:pointer;transition:all 0.15s;}
+.age-decline:hover{border-color:rgba(255,255,255,0.18);color:rgba(255,255,255,0.5);}
+.age-warn{font-size:0.6rem;color:rgba(255,255,255,0.18);margin-top:18px;line-height:1.6;}
+/* COOKIE BANNER */
+.cookie-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#161616;border-top:1px solid rgba(255,255,255,0.07);padding:12px 16px;z-index:400;display:flex;align-items:center;gap:10px;transition:transform 0.3s;}
+.cookie-bar.hidden{transform:translateY(110%);}
+.cookie-txt{font-size:0.65rem;color:var(--grey);line-height:1.5;flex:1;}
+.cookie-btn{flex-shrink:0;background:var(--gold);border:none;border-radius:8px;padding:9px 16px;font-weight:800;font-size:0.7rem;color:#000;cursor:pointer;white-space:nowrap;}
+/* WAGERING REQUIREMENTS */
+.cc-wager{display:flex;gap:5px;flex-wrap:wrap;padding:0 14px 10px;position:relative;z-index:2;}
+.wi{font-size:0.6rem;color:var(--grey);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:5px;padding:3px 8px;}
+.wi span{color:rgba(255,255,255,0.65);font-weight:700;}
+/* DETAILS TOGGLE */
+.cc-det-toggle{display:flex;align-items:center;justify-content:center;gap:5px;padding:2px 14px 10px;font-size:0.68rem;color:rgba(255,210,52,0.45);cursor:pointer;transition:color 0.15s;position:relative;z-index:2;user-select:none;}
+.cc-det-toggle:hover{color:var(--gold);}
+.cc-det-panel{display:none;margin:0 14px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 14px;font-size:0.67rem;color:var(--grey);line-height:1.8;position:relative;z-index:2;}
+.cc-det-panel.open{display:block;}
+.cc-det-panel b{color:rgba(255,255,255,0.55);}
+/* RESPONSIBLE GAMBLING */
+.rg-section{margin:4px 18px 16px;background:rgba(255,61,61,0.04);border:1px solid rgba(255,61,61,0.14);border-radius:14px;padding:14px 16px;position:relative;z-index:2;}
+.rg-title{font-size:0.68rem;font-weight:800;color:rgba(255,100,100,0.7);letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;}
+.rg-text{font-size:0.64rem;color:var(--grey);line-height:1.6;margin-bottom:10px;}
+.rg-links{display:flex;gap:7px;flex-wrap:wrap;}
+.rg-link{font-size:0.63rem;font-weight:700;padding:4px 10px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);color:var(--grey);text-decoration:none;transition:all 0.15s;}
+.rg-link:hover{color:var(--white);border-color:rgba(255,255,255,0.2);}
+/* AFFILIATE NOTICE */
+.aff-notice{margin:0 18px 14px;background:rgba(255,210,52,0.02);border:1px solid rgba(255,210,52,0.08);border-radius:10px;padding:10px 14px;font-size:0.63rem;color:rgba(255,255,255,0.28);line-height:1.6;position:relative;z-index:2;}
+.aff-notice b{color:rgba(255,210,52,0.45);}
 </style>
 </head>
 <body>
+
+<!-- AGE GATE -->
+<div class="age-gate" id="ageGate">
+  <div class="age-gate-box">
+    <div class="age-gate-icon">🔞</div>
+    <div class="age-gate-title">BIST DU <span>18+</span>?</div>
+    <div class="age-gate-sub">Diese Seite enthält Links zu Online-Casinos. Der Zugang ist nur für Personen ab 18 Jahren gestattet. Glücksspiel kann süchtig machen — spiele verantwortungsvoll.</div>
+    <button class="age-confirm" onclick="ageConfirm()">✓ JA, ICH BIN 18 JAHRE ODER ÄLTER</button>
+    <button class="age-decline" onclick="ageDecline()">Nein, ich bin unter 18</button>
+    <div class="age-warn">Mit dem Fortfahren bestätigst du, dass du das gesetzliche Mindestalter in deinem Land erreicht hast und die Nutzungsbedingungen akzeptierst.</div>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-bar" id="cookieBar">
+  <div class="cookie-txt">Wir nutzen Cookies für Funktionalität & Analyse. Durch die Nutzung stimmst du zu. <a href="#" style="color:var(--gold);text-decoration:none;">Mehr Info</a></div>
+  <button class="cookie-btn" onclick="cookieAccept()">OK</button>
+</div>
 
 <!-- FIX 2: canvas mit width/height Attributen -->
 <canvas id="particles" width="480" height="100"></canvas>
@@ -224,6 +280,8 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 
 <div class="divider"><div class="div-line"></div><div class="div-txt" data-de="TOP CASINOS 2026" data-en="TOP CASINOS 2026">TOP CASINOS 2026</div><div class="div-line"></div></div>
 
+<div class="aff-notice"><b>Affiliate-Hinweis:</b> BonusFacts erhält eine Provision, wenn du über unsere Links ein Konto erstellst — ohne Mehrkosten für dich. Die Reihenfolge der Casinos kann durch Affiliate-Vereinbarungen beeinflusst sein. Alle Bewertungen basieren auf eigener Recherche.</div>
+
 <!-- 1. CASUMO -->
 <div class="casino-card cc-gold" onclick="handleCTA('casumo', this, event)">
   <div class="card-shimmer"></div>
@@ -248,6 +306,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-a">Gamification</div>
     <div class="cctag tag-w">Slots · Live</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>30x</span></div>
+    <div class="wi">Min. Einzahlung: <span>10€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% Bonus bis 300€ auf die erste Einzahlung. 30-fache Umsatzbedingung auf Bonus+Einzahlung. Max. Einsatz während des Bonus: 5€/Runde. Gültig für 30 Tage. Nur für Neukunden. AGB gelten. <b>Lizenz:</b> MGA (Malta). <b>Auszahlung:</b> bis 24h.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('casumo', this, event)" data-de="🎠 BONUS JETZT SICHERN →" data-en="🎠 GRAB BONUS NOW →">🎠 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Premium-Marke mit fairen Konditionen" data-en="Premium brand, fair conditions">Premium-Marke mit fairen Konditionen</span></div>
 </div>
@@ -274,6 +340,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-g">✓ Top Affiliate</div>
     <div class="cctag tag-w">Sport · Casino</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>25x</span></div>
+    <div class="wi">Min. Einzahlung: <span>10€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>21 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> Bis zu 200€ Bonus auf die erste Einzahlung. 25-fache Umsatzbedingung. Max. Einsatz 5€. Gültig 21 Tage. Nur für Neukunden. AGB gelten. <b>Lizenz:</b> MGA & UKGC. <b>Auszahlung:</b> bis 48h.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('unibet', this, event)" data-de="🎯 BONUS JETZT SICHERN →" data-en="🎯 GRAB BONUS NOW →">🎯 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Kindred Group — einer der seriösesten Anbieter" data-en="Kindred Group — one of the most reputable">Kindred Group — einer der seriösesten Anbieter</span></div>
 </div>
@@ -300,6 +374,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-g">✓ Sehr verlässlich</div>
     <div class="cctag tag-a">Slots · Live · Sport</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>35x</span></div>
+    <div class="wi">Min. Einzahlung: <span>20€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 200€ + 50 Freispiele. 35-fache Umsatzbedingung auf Bonusbetrag. Min. Einzahlung 20€. Max. Einsatz 5€. Freispiele: 0.10€/Spin. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA. <b>Auszahlung:</b> bis 3 Werktage.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('betsson', this, event)" data-de="🔵 BONUS JETZT SICHERN →" data-en="🔵 GRAB BONUS NOW →">🔵 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Schwedischer Börsenkonzern — sehr sicher" data-en="Swedish listed company — very safe">Schwedischer Börsenkonzern — sehr sicher</span></div>
 </div>
@@ -326,6 +408,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-a">Slots-Fokus</div>
     <div class="cctag tag-g">✓ Lizenziert</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>40x</span></div>
+    <div class="wi">Min. Einzahlung: <span>10€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 200€ + 120 Freispiele. 40-fache Umsatzbedingung auf Bonus. Min. Einzahlung 10€. Max. Einsatz 5€. Freispiele auf ausgewählten Slots. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('casinoland', this, event)" data-de="🎪 BONUS JETZT SICHERN →" data-en="🎪 GRAB BONUS NOW →">🎪 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Gut für Slots-Liebhaber" data-en="Great for slots lovers">Gut für Slots-Liebhaber</span></div>
 </div>
@@ -352,6 +442,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-g">✓ Gamification</div>
     <div class="cctag tag-a">Themen-Design</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>35x</span></div>
+    <div class="wi">Min. Einzahlung: <span>20€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 200 Freispiele. 35-fache Umsatzbedingung. Min. Einzahlung 20€. Max. Einsatz 5€. Freispiele werden täglich vergeben. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('wazamba', this, event)" data-de="🦁 BONUS JETZT SICHERN →" data-en="🦁 GRAB BONUS NOW →">🦁 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Einzigartiges Casino mit Spaßfaktor" data-en="Unique casino, lots of fun">Einzigartiges Casino mit Spaßfaktor</span></div>
 </div>
@@ -378,6 +476,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-g">✓ Affiliate-Friendly</div>
     <div class="cctag tag-w">Sport · Slots · Live</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>40x</span></div>
+    <div class="wi">Min. Einzahlung: <span>10€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 200 Freispiele. 40-fache Umsatzbedingung. Min. Einzahlung 10€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao. <b>Auszahlung:</b> bis 24h.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('n1bet', this, event)" data-de="🎮 BONUS JETZT SICHERN →" data-en="🎮 GRAB BONUS NOW →">🎮 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Gute Konditionen für Spieler & Affiliates" data-en="Good for players & affiliates">Gute Konditionen für Spieler & Affiliates</span></div>
 </div>
@@ -404,6 +510,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-a">Mega-Bonus</div>
     <div class="cctag tag-w">Slots · Live</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>45x</span></div>
+    <div class="wi">Min. Einzahlung: <span>20€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>21 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> Bis zu 1.000€ + 250 Freispiele. 45-fache Umsatzbedingung — <b>höher als Durchschnitt, bitte prüfen.</b> Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 21 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('goldspin', this, event)" data-de="✨ BONUS JETZT SICHERN →" data-en="✨ GRAB BONUS NOW →">✨ BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-warn">⚠ <span data-de="Hoher Bonus — Bedingungen beachten" data-en="High bonus — check terms">Hoher Bonus — Bedingungen beachten</span></div>
 </div>
@@ -430,6 +544,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-a">7.250+ Spiele</div>
     <div class="cctag tag-g">✓ Lizenziert</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>35x</span></div>
+    <div class="wi">Min. Einzahlung: <span>20€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ auf die erste Einzahlung. 35-fache Umsatzbedingung. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. Nur für Neukunden. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('glorion', this, event)" data-de="👑 BONUS JETZT SICHERN →" data-en="👑 GRAB BONUS NOW →">👑 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Beste Spielauswahl im Vergleich" data-en="Best game selection">Beste Spielauswahl im Vergleich</span></div>
 </div>
@@ -457,6 +579,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-a">Cashback</div>
     <div class="cctag tag-w">Turniere</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>30x</span></div>
+    <div class="wi">Min. Einzahlung: <span>20€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + Cashback. 30-fache Umsatzbedingung. Min. Einzahlung 20€. Max. Einsatz 5€. Cashback wöchentlich ausgezahlt. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA (Malta).</div>
   <button class="cc-cta-btn btn-gold" onclick="handleCTA('dudespin', this, event)" data-de="🎲 BONUS JETZT SICHERN →" data-en="🎲 GRAB BONUS NOW →">🎲 BONUS JETZT SICHERN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="MGA-lizenziert · Cashback ist ein echtes Plus" data-en="MGA licensed · Cashback is a real plus">MGA-lizenziert · Cashback ist ein echtes Plus</span></div>
 </div>
@@ -483,6 +613,14 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
     <div class="cctag tag-a">3.000+ Spiele</div>
     <div class="cctag tag-g">✓ Wächst schnell</div>
   </div>
+  <div class="cc-wager">
+    <div class="wi">Umsatz: <span>40x</span></div>
+    <div class="wi">Min. Einzahlung: <span>10€</span></div>
+    <div class="wi">Max. Einsatz: <span>5€</span></div>
+    <div class="wi">Gültig: <span>30 Tage</span></div>
+  </div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ auf die erste Einzahlung. 40-fache Umsatzbedingung. Min. Einzahlung 10€. Max. Einsatz 5€. Gültig 30 Tage. Nur Neukunden. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
   <button class="cc-cta-btn btn-outline" onclick="handleCTA('betstro', this, event)" data-de="⚡ CASINO ANSEHEN →" data-en="⚡ VIEW CASINO →">⚡ CASINO ANSEHEN →</button>
   <div class="cc-honest ch-good">✓ <span data-de="Neuer Aufsteiger — gut für Early Adopters" data-en="Rising star — good for early adopters">Neuer Aufsteiger — gut für Early Adopters</span></div>
 </div>
@@ -493,6 +631,17 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
   <div class="bh-title">Bis zu <span>500€</span><br><span data-de="Bonus sichern" data-en="Bonus grab">Bonus sichern</span></div>
   <div class="bh-sub" data-de="Kein Risiko auf BonusFacts. Direkt zum besten Bonus für dich." data-en="No risk on BonusFacts. Direct to the best bonus.">Kein Risiko auf BonusFacts. Direkt zum besten Bonus für dich.</div>
   <button class="bh-btn" data-de="🎰 JETZT BONUS SICHERN →" data-en="🎰 GRAB BONUS NOW →">🎰 JETZT BONUS SICHERN →</button>
+</div>
+
+<div class="rg-section">
+  <div class="rg-title">⚠ Verantwortungsvolles Spielen</div>
+  <div class="rg-text">Glücksspiel sollte unterhaltsam sein — nicht als Einkommensquelle. Setze dir Limits und spiele nur mit Geld, das du dir leisten kannst zu verlieren. Bei Problemen gibt es kostenlose Hilfe.</div>
+  <div class="rg-links">
+    <a class="rg-link" href="https://www.bzga.de" target="_blank" rel="noopener">bzga.de</a>
+    <a class="rg-link" href="https://www.gamblingtherapy.org" target="_blank" rel="noopener">Gambling Therapy</a>
+    <a class="rg-link" href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware</a>
+    <a class="rg-link" href="https://www.spielen-mit-verantwortung.de" target="_blank" rel="noopener">Spielen mit Verantwortung</a>
+  </div>
 </div>
 
 <div class="footer">
@@ -516,6 +665,42 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 <script>
 'use strict';
 let lang = 'de';
+
+// AGE GATE
+(function(){
+  if(!localStorage.getItem('bf_age_ok')){
+    document.getElementById('ageGate').classList.remove('hidden');
+  } else {
+    document.getElementById('ageGate').classList.add('hidden');
+  }
+})();
+function ageConfirm(){
+  localStorage.setItem('bf_age_ok','1');
+  document.getElementById('ageGate').classList.add('hidden');
+}
+function ageDecline(){
+  document.getElementById('ageGate').innerHTML='<div style="color:var(--grey);font-size:0.9rem;text-align:center;padding:40px 20px;">Zugang verweigert. Diese Seite ist nur für Personen ab 18 Jahren.</div>';
+}
+
+// COOKIE BANNER
+(function(){
+  if(!localStorage.getItem('bf_cookie_ok')){
+    document.getElementById('cookieBar').classList.remove('hidden');
+  } else {
+    document.getElementById('cookieBar').classList.add('hidden');
+  }
+})();
+function cookieAccept(){
+  localStorage.setItem('bf_cookie_ok','1');
+  document.getElementById('cookieBar').classList.add('hidden');
+}
+
+// DETAILS TOGGLE
+function toggleDet(el){
+  const panel = el.nextElementSibling;
+  const open = panel.classList.toggle('open');
+  el.textContent = (open ? '▲' : '▼') + ' Bonusbedingungen';
+}
 
 const LINKS = {
   main:       'https://bonusfacts.com',
