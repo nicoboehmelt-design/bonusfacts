@@ -222,7 +222,7 @@ body{font-family:'Figtree',sans-serif;background:#f5f5f5;color:#111;max-width:48
       </div>
     </div>
     <div class="verdict">Höchster Gesamtbonus im Test — 4 Einzahlungsboni über das Welcome-Paket verteilt.</div>
-    <a class="wb-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="rippleEffect(event)">
+    <a class="wb-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="fireConversion2();rippleEffect(event)">
       <span class="wb-cta-main">🎰 JETZT BONUS SICHERN →</span>
       <span class="wb-cta-sub">Kostenlos · Keine Kreditkarte nötig</span>
     </a>
@@ -292,23 +292,30 @@ body{font-family:'Figtree',sans-serif;background:#f5f5f5;color:#111;max-width:48
     <div class="exit-emoji">⚠️</div>
     <div class="exit-title">Bonus nicht verpassen</div>
     <div class="exit-sub">Unser Testsieger wartet — <b>3.500€ + 150 Freispiele</b> nur für Neukunden.</div>
-    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener">🎰 Jetzt noch sichern →</a>
+    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="fireConversion2()">🎰 Jetzt noch sichern →</a>
     <div class="exit-dismiss" onclick="document.getElementById('exitOverlay2').classList.remove('show')">Nein danke</div>
   </div>
 </div>
 
 <script>
-// UTM passthrough
+// TrafficJunky Tracking
+const TJ_MEMBER_ID = '1008765621';
 (function(){
   const p=new URLSearchParams(window.location.search);
-  const keys=['utm_source','utm_medium','utm_campaign','utm_content','click_id','sub1'];
+  const keys=['aclid','sub1','sub2','utm_source','utm_medium','utm_campaign','click_id'];
   const s={};keys.forEach(k=>{if(p.get(k))s[k]=p.get(k);});
   if(Object.keys(s).length)sessionStorage.setItem('tp2',JSON.stringify(s));
   const saved=JSON.parse(sessionStorage.getItem('tp2')||'{}');
   document.querySelectorAll('a[href*="fastmui"]').forEach(a=>{
-    if(Object.keys(saved).length){const u=new URL(a.href);Object.entries(saved).forEach(([k,v])=>u.searchParams.set(k,v));a.href=u.toString();}
+    if(saved.aclid){const u=new URL(a.href);u.searchParams.set('aff_click_id',saved.aclid);a.href=u.toString();}
   });
 })();
+function fireConversion2(){
+  const p=JSON.parse(sessionStorage.getItem('tp2')||'{}');
+  if(!p.aclid)return;
+  const img=new Image();
+  img.src=`https://ads.trafficjunky.net/tj_ads_pt?a=${p.sub2||'0'}&member_id=${TJ_MEMBER_ID}&cti=${Math.floor(Math.random()*9999999)}&aclid=${encodeURIComponent(p.aclid)}&ctv=0`;
+}
 
 // Live counter
 let c2=305+Math.floor(Math.random()*20);

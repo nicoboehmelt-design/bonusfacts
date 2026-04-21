@@ -233,7 +233,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:2px;background
 </div>
 
 <div class="cta-section">
-  <a class="cta-btn" id="mainCta3" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener" onclick="rippleEffect(event)">
+  <a class="cta-btn" id="mainCta3" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener" onclick="fireConversion3();rippleEffect(event)">
     <span class="cta-main">💥 JETZT 400% BONUS HOLEN →</span>
     <span class="cta-sub">Gratis registrieren · Sofort spielen</span>
   </a>
@@ -265,7 +265,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:2px;background
   </div>
 </div>
 
-<a class="bottom-cta" id="bottomCta3" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener">
+<a class="bottom-cta" id="bottomCta3" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener" onclick="fireConversion3()">
   💥 400% BONUS JETZT SICHERN →
 </a>
 
@@ -279,23 +279,30 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:2px;background
   <div class="exit-box">
     <div class="exit-title">⛔ WARTE!</div>
     <div class="exit-sub">Dein <b style="color:#ff4444">400% Exklusiv-Bonus</b> verfällt wenn du jetzt gehst.<br>Nur noch <span id="exitSlots">12</span> Plätze frei.</div>
-    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener">💥 BONUS DOCH SICHERN →</a>
+    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener" onclick="fireConversion3()">💥 BONUS DOCH SICHERN →</a>
     <div class="exit-dismiss" onclick="document.getElementById('exitOverlay3').classList.remove('show')">Nein danke, ich verzichte</div>
   </div>
 </div>
 
 <script>
-// UTM passthrough
+// TrafficJunky Tracking
+const TJ_MEMBER_ID = '1008765621';
 (function(){
   const p=new URLSearchParams(window.location.search);
-  const keys=['utm_source','utm_medium','utm_campaign','utm_content','click_id','sub1','sub2'];
+  const keys=['aclid','sub1','sub2','utm_source','utm_medium','utm_campaign','click_id'];
   const s={};keys.forEach(k=>{if(p.get(k))s[k]=p.get(k);});
   if(Object.keys(s).length)sessionStorage.setItem('tp3',JSON.stringify(s));
   const saved=JSON.parse(sessionStorage.getItem('tp3')||'{}');
   document.querySelectorAll('a[href*="fastmui"]').forEach(a=>{
-    if(Object.keys(saved).length){const u=new URL(a.href);Object.entries(saved).forEach(([k,v])=>u.searchParams.set(k,v));a.href=u.toString();}
+    if(saved.aclid){const u=new URL(a.href);u.searchParams.set('aff_click_id',saved.aclid);a.href=u.toString();}
   });
 })();
+function fireConversion3(){
+  const p=JSON.parse(sessionStorage.getItem('tp3')||'{}');
+  if(!p.aclid)return;
+  const img=new Image();
+  img.src=`https://ads.trafficjunky.net/tj_ads_pt?a=${p.sub2||'0'}&member_id=${TJ_MEMBER_ID}&cti=${Math.floor(Math.random()*9999999)}&aclid=${encodeURIComponent(p.aclid)}&ctv=0`;
+}
 
 // Countdown
 (function(){

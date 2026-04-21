@@ -368,7 +368,7 @@ body{
   </div>
 
   <div class="cta-wrap">
-    <a class="cta-btn" id="mainCta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="rippleEffect(event)">
+    <a class="cta-btn" id="mainCta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="fireConversion();rippleEffect(event)">
       <span class="cta-main">🎰 BONUS JETZT SICHERN →</span>
       <span class="cta-sub">Kostenlos registrieren · Keine Kreditkarte nötig</span>
     </a>
@@ -411,30 +411,39 @@ body{
   <div class="exit-box">
     <div class="exit-title">⚠️ WARTE KURZ!</div>
     <div class="exit-sub">Du verlässt die Seite und verlierst deinen<br><b style="color:#ffd234">3.500€ Exklusivbonus</b> — einmalig verfügbar.</div>
-    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener">🎰 BONUS DOCH SICHERN →</a>
+    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="fireConversion()">🎰 BONUS DOCH SICHERN →</a>
     <div class="exit-dismiss" onclick="closeExit()">Nein danke, ich verzichte auf den Bonus</div>
   </div>
 </div>
 
 <script>
-// ── UTM TRACKING PASSTHROUGH ──────────────────────────────────────────────
+// ── TRAFFICJUNKY TRACKING ─────────────────────────────────────────────────
+const TJ_MEMBER_ID = '1008765621';
 (function(){
   const params = new URLSearchParams(window.location.search);
-  const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','click_id','sub1','sub2'];
+  // Capture TJ click ID (aclid) + UTM params
+  const keys = ['aclid','sub1','sub2','utm_source','utm_medium','utm_campaign','utm_content','click_id'];
   const stored = {};
-  utmKeys.forEach(k => { if(params.get(k)) stored[k] = params.get(k); });
-  if(Object.keys(stored).length){
-    sessionStorage.setItem('trackingParams', JSON.stringify(stored));
-  }
-  // Append to CTA link
-  const saved = JSON.parse(sessionStorage.getItem('trackingParams') || '{}');
-  const cta = document.getElementById('mainCta');
-  if(cta && Object.keys(saved).length){
-    const url = new URL(cta.href);
-    Object.entries(saved).forEach(([k,v]) => url.searchParams.set(k,v));
-    cta.href = url.toString();
-  }
+  keys.forEach(k => { if(params.get(k)) stored[k] = params.get(k); });
+  if(Object.keys(stored).length) sessionStorage.setItem('tjParams', JSON.stringify(stored));
+  // Append aclid to CTA links for affiliate passthrough
+  const saved = JSON.parse(sessionStorage.getItem('tjParams') || '{}');
+  document.querySelectorAll('a[href*="fastmui"]').forEach(a => {
+    if(saved.aclid){ const u = new URL(a.href); u.searchParams.set('aff_click_id', saved.aclid); a.href = u.toString(); }
+  });
 })();
+
+// ── CONVERSION POSTBACK (fired on CTA click) ──────────────────────────────
+function fireConversion() {
+  const p = JSON.parse(sessionStorage.getItem('tjParams') || '{}');
+  if(!p.aclid) return; // only fire if TJ click_id present
+  const campaignId = p.sub2 || '0';
+  const rand = Math.floor(Math.random() * 9999999);
+  const postback = `https://ads.trafficjunky.net/tj_ads_pt?a=${campaignId}&member_id=${TJ_MEMBER_ID}&cti=${rand}&aclid=${encodeURIComponent(p.aclid)}&ctv=0`;
+  // Fire as pixel (non-blocking)
+  const img = new Image();
+  img.src = postback;
+}
 
 // ── COUNTDOWN TIMER ───────────────────────────────────────────────────────
 (function(){
