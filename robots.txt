@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /setup/
+Sitemap: https://bonusfacts.com/sitemap.xml
