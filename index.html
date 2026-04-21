@@ -48,6 +48,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 .lb{font-size:0.68rem;font-weight:700;padding:5px 10px;cursor:pointer;color:var(--grey);transition:all 0.15s;}
 .lb.on{background:var(--gold);color:#000;}
 .hero{padding:28px 18px 26px;position:relative;overflow:hidden;z-index:2;background:radial-gradient(ellipse 90% 70% at 50% -10%,rgba(255,210,52,0.14),transparent 65%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(255,160,0,0.06),transparent),var(--bg);}
+.hero > .hero-badge,.hero > .bonus-3d,.hero > .cta-wrap{max-width:62%;}
 .hero::before{content:'';position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(rgba(255,210,52,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,210,52,0.05) 1px,transparent 1px);background-size:30px 30px;transform:perspective(220px) rotateX(62deg);transform-origin:bottom;pointer-events:none;}
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 40%,rgba(0,0,0,0.5));pointer-events:none;}
 .coin{position:absolute;font-size:1.8rem;animation:float 3.5s ease-in-out infinite;opacity:0.55;pointer-events:none;z-index:1;filter:drop-shadow(0 0 8px rgba(255,210,52,0.4));}
@@ -57,7 +58,7 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 .coin4{top:25%;right:20%;font-size:0.9rem;animation-delay:0.7s;opacity:0.35;}
 .hero-badge{position:relative;z-index:3;display:inline-flex;align-items:center;gap:6px;background:rgba(0,230,118,0.1);border:1px solid rgba(0,230,118,0.3);border-radius:100px;padding:5px 13px;margin-bottom:18px;font-size:0.72rem;font-weight:700;color:var(--green);animation:fadeUp 0.5s ease both;backdrop-filter:blur(8px);}
 .bdot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 1.5s ease-in-out infinite;}
-.bonus-3d{text-align:center;margin-bottom:20px;position:relative;z-index:3;animation:fadeUp 0.5s ease 0.1s both;}
+.bonus-3d{text-align:left;margin-bottom:20px;position:relative;z-index:3;animation:fadeUp 0.5s ease 0.1s both;}
 .bonus-pre{font-family:'Anton',sans-serif;font-size:0.85rem;letter-spacing:5px;text-transform:uppercase;color:var(--grey);margin-bottom:4px;}
 .bonus-amount{font-family:'Anton',sans-serif;font-size:6rem;line-height:0.88;letter-spacing:-3px;background:linear-gradient(180deg,var(--gold3) 0%,var(--gold) 35%,var(--gold2) 75%,#cc7000 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 6px 16px rgba(255,210,52,0.45));display:block;animation:popIn 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;transform:perspective(300px) rotateX(8deg);}
 .bonus-post{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:4px;color:var(--white);margin-top:4px;}
@@ -222,6 +223,29 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 /* AFFILIATE NOTICE */
 .aff-notice{margin:0 18px 14px;background:rgba(255,210,52,0.02);border:1px solid rgba(255,210,52,0.08);border-radius:10px;padding:10px 14px;font-size:0.63rem;color:rgba(255,255,255,0.28);line-height:1.6;position:relative;z-index:2;}
 .aff-notice b{color:rgba(255,210,52,0.45);}
+/* HERO GIRL */
+.hero-girl{
+  position:absolute;
+  right:-4px;
+  bottom:0;
+  height:96%;
+  z-index:1;
+  pointer-events:none;
+  object-fit:contain;
+  -webkit-mask-image:linear-gradient(to left,rgba(0,0,0,0.9) 55%,transparent 100%);
+  mask-image:linear-gradient(to left,rgba(0,0,0,0.9) 55%,transparent 100%);
+  filter:drop-shadow(-14px 0 28px rgba(0,0,0,0.75)) drop-shadow(0 0 40px rgba(255,120,0,0.18));
+}
+.hero-girl-glow{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:55%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse 80% 90% at 90% 80%,rgba(255,100,0,0.08),transparent 70%);
+}
 </style>
 </head>
 <body>
@@ -263,6 +287,8 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 </nav>
 
 <div class="hero">
+  <div class="hero-girl-glow"></div>
+  <img class="hero-girl" src="images/casino_girl.png" alt="">
   <div class="coin coin1">💰</div>
   <div class="coin coin2">🎰</div>
   <div class="coin coin3">⭐</div>
