@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:300px;height:250px;overflow:hidden;cursor:pointer;font-family:Arial,sans-serif;background:#fff;}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(255,130,0,0.3)}50%{box-shadow:0 0 28px rgba(255,130,0,0.8)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+.wrap{width:300px;height:250px;position:relative;overflow:hidden;background:#fff;}
+.header{background:#1a1a2e;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:11px;font-weight:900;letter-spacing:2px;color:#fff;}
+.logo span{color:#ff9f00;}
+.badge{background:#ff9f00;border-radius:3px;padding:2px 7px;font-size:8px;font-weight:900;color:#000;letter-spacing:1px;}
+.hero-bar{background:linear-gradient(135deg,#1a1a2e,#0f3460);padding:6px 12px;}
+.hero-txt{font-size:9px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1px;}
+.hero-big{font-size:13px;font-weight:900;color:#fff;line-height:1.2;margin-top:1px;}
+.hero-big span{color:#ff9f00;}
+.content{padding:10px 12px;}
+.rank-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.rank-num{font-size:22px;font-weight:900;color:#ff9f00;line-height:1;min-width:24px;}
+.rank-info{}
+.rank-name{font-size:12px;font-weight:900;color:#111;}
+.rank-stars{color:#ff9f00;font-size:9px;letter-spacing:1px;}
+.bonus-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
+.bg-item{background:#f8f4ff;border:1px solid #e8e0ff;border-radius:6px;padding:6px;text-align:center;}
+.bg-val{font-size:16px;font-weight:900;color:#ff9f00;line-height:1;}
+.bg-lbl{font-size:7px;color:#888;font-weight:700;letter-spacing:1px;margin-top:1px;}
+.cta{
+  display:block;background:linear-gradient(135deg,#ff9f00,#ff6d00);
+  border-radius:6px;padding:9px;text-align:center;
+  font-size:11px;font-weight:900;color:#fff;letter-spacing:1px;
+  animation:glow 2s ease-in-out infinite,pulse 2s ease-in-out infinite;
+  position:relative;overflow:hidden;
+}
+.cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 2s linear infinite;}
+.live{display:flex;align-items:center;gap:4px;margin-top:5px;justify-content:center;font-size:8px;color:#888;font-weight:700;}
+.dot{width:5px;height:5px;border-radius:50%;background:#22c55e;box-shadow:0 0 4px #22c55e;animation:blink 1s infinite;}
+.bottom-accent{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff9f00,#ff6d00,#ff9f00);background-size:200% auto;animation:shimmer 2s linear infinite;}
+</style>
+</head>
+<body>
+<a href="https://bonusfacts.com/lp2.html?aclid={aclid}&sub1={spot_id}&sub2={campaign_id}&utm_source=tj_editorial_de" target="_blank" style="text-decoration:none;display:block;">
+<div class="wrap">
+  <div class="header">
+    <div class="logo">BONUS<span>FACTS</span></div>
+    <div class="badge">TESTSIEGER</div>
+  </div>
+  <div class="hero-bar">
+    <div class="hero-txt">WIR HABEN 18 CASINOS GETESTET —</div>
+    <div class="hero-big">Das ist der <span>klare Sieger.</span></div>
+  </div>
+  <div class="content">
+    <div class="rank-row">
+      <div class="rank-num">#1</div>
+      <div class="rank-info">
+        <div class="rank-name">PlayAmo Casino</div>
+        <div class="rank-stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="bonus-grid">
+      <div class="bg-item"><div class="bg-val">3.500€</div><div class="bg-lbl">BONUS</div></div>
+      <div class="bg-item"><div class="bg-val">150</div><div class="bg-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="cta">🏆 Zum Testsieger →</div>
+    <div class="live"><div class="dot"></div>312 Registrierungen heute</div>
+  </div>
+  <div class="bottom-accent"></div>
+</div>
+</a>
+</body>
+</html>

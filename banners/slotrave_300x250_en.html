@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:300px;height:250px;overflow:hidden;cursor:pointer;font-family:'Arial Black',Arial,sans-serif;background:#0a0000;}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+@keyframes glowRed{0%,100%{box-shadow:0 0 15px rgba(220,38,38,0.5)}50%{box-shadow:0 0 40px rgba(220,38,38,0.9)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(500px)}}
+
+.wrap{width:300px;height:250px;position:relative;overflow:hidden;background:linear-gradient(160deg,#120000,#0a0000 60%,#100005);}
+.scan{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(220,38,38,0.08);animation:scanline 6s linear infinite;pointer-events:none;}
+.bg-glow{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,0.2),transparent 70%);pointer-events:none;}
+.top-bar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#dc2626,#ff4444,#dc2626);background-size:200% auto;animation:shimmer 2s linear infinite;}
+.excl{position:absolute;top:10px;left:0;right:0;text-align:center;font-size:8px;font-weight:900;letter-spacing:3px;color:rgba(220,38,38,0.8);text-transform:uppercase;}
+.mult-wrap{position:absolute;top:26px;left:0;right:0;text-align:center;animation:fadeIn 0.4s ease both;}
+.mult-pre{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.25);font-weight:700;text-transform:uppercase;}
+.mult{font-size:72px;font-weight:900;line-height:0.85;letter-spacing:-4px;background:linear-gradient(180deg,#ff8888,#dc2626 40%,#8b0000 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 16px rgba(220,38,38,0.6));}
+.mult-sub{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.25);font-weight:700;margin-top:1px;}
+.bis{font-size:10px;color:rgba(255,255,255,0.2);font-weight:700;letter-spacing:1px;text-align:center;margin-top:2px;}
+.max-amt{font-size:28px;font-weight:900;color:#fff;text-align:center;letter-spacing:-1px;line-height:1;filter:drop-shadow(0 0 8px rgba(255,255,255,0.1));}
+.plus{font-size:14px;font-weight:900;color:rgba(220,38,38,0.3);text-align:center;margin:2px 0;}
+.fs-row{display:flex;align-items:center;justify-content:center;gap:5px;}
+.fs-num{font-size:32px;font-weight:900;color:#fff;line-height:1;}
+.fs-lbl{font-size:10px;font-weight:900;letter-spacing:2px;color:#ff4444;line-height:1.2;text-align:left;}
+.cta{position:absolute;bottom:12px;left:12px;right:12px;background:linear-gradient(135deg,#dc2626,#9b1010);border-radius:7px;padding:10px;text-align:center;animation:glowRed 2s ease-in-out infinite,pulse 2s ease-in-out infinite;font-size:11px;font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;overflow:hidden;}
+.cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 1.8s linear infinite;}
+.slots{position:absolute;bottom:50px;right:12px;font-size:8px;color:rgba(255,255,255,0.25);font-weight:700;display:flex;align-items:center;gap:3px;}
+.sdot{width:4px;height:4px;border-radius:50%;background:#dc2626;box-shadow:0 0 4px #dc2626;animation:blink 0.8s infinite;}
+.bottom-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#dc2626,#ff4444,#dc2626);background-size:200% auto;animation:shimmer 2s linear infinite;}
+</style>
+</head>
+<body>
+<a href="https://bonusfacts.com/lp3.html?aclid={aclid}&sub1={spot_id}&sub2={campaign_id}&utm_source=tj_slotrave_en" target="_blank" style="text-decoration:none;display:block;">
+<div class="wrap">
+  <div class="scan"></div>
+  <div class="bg-glow"></div>
+  <div class="top-bar"></div>
+  <div class="excl">🔥 Exclusive Bonus</div>
+  <div class="mult-wrap">
+    <div class="mult-pre">Welcome Bonus</div>
+    <div class="mult">400%</div>
+    <div class="mult-sub">On Your Deposit</div>
+  </div>
+  <div class="bis">Up to</div>
+  <div class="max-amt">€2,500</div>
+  <div class="plus">+</div>
+  <div class="fs-row">
+    <div class="fs-num">150</div>
+    <div class="fs-lbl">FREE<br>SPINS</div>
+  </div>
+  <div class="slots"><div class="sdot"></div>Only 12 spots left</div>
+  <div class="cta">💥 Get 400% Bonus →</div>
+  <div class="bottom-bar"></div>
+</div>
+</a>
+</body>
+</html>
