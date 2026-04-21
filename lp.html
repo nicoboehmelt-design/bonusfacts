@@ -22,11 +22,12 @@ body{
 
 @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
 @keyframes glow{0%,100%{box-shadow:0 0 30px rgba(255,210,52,0.4),0 0 0 0 rgba(255,210,52,0.2)}50%{box-shadow:0 0 80px rgba(255,210,52,0.9),0 0 0 12px rgba(255,210,52,0.05)}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes ripple{to{transform:scale(4);opacity:0;}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes notifSlide{0%{transform:translateX(120%);opacity:0}10%{transform:translateX(0);opacity:1}85%{transform:translateX(0);opacity:1}100%{transform:translateX(120%);opacity:0}}
 
 /* TOP BAR */
 .top-bar{
@@ -39,7 +40,34 @@ body{
   font-weight:900;
   color:#fff;
   letter-spacing:1px;
+  position:relative;
+  z-index:10;
 }
+
+/* COUNTDOWN */
+.countdown-bar{
+  background:rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,210,52,0.15);
+  padding:8px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:0.72rem;
+  font-weight:700;
+  color:rgba(255,255,255,0.5);
+  letter-spacing:1px;
+}
+.cd-lbl{white-space:nowrap;}
+.cd-timer{
+  font-family:'Anton',sans-serif;
+  font-size:1.1rem;
+  letter-spacing:3px;
+  color:#ffd234;
+  min-width:70px;
+  text-align:center;
+}
+.cd-dot{width:6px;height:6px;border-radius:50%;background:#ff3d3d;box-shadow:0 0 8px #ff3d3d;animation:blink 0.7s ease-in-out infinite;flex-shrink:0;}
 
 /* BANNER */
 .banner-wrap{
@@ -70,13 +98,32 @@ body{
   text-transform:uppercase;
 }
 
+/* SOCIAL PROOF */
+.social-proof{
+  background:rgba(0,230,118,0.07);
+  border:1px solid rgba(0,230,118,0.2);
+  border-radius:8px;
+  padding:8px 14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:0.72rem;
+  font-weight:700;
+  color:rgba(255,255,255,0.6);
+  margin-bottom:10px;
+  width:100%;
+  animation:fadeUp 0.4s ease both;
+}
+.sp-dot{width:7px;height:7px;border-radius:50%;background:#00e676;box-shadow:0 0 8px #00e676;animation:blink 1.2s ease-in-out infinite;flex-shrink:0;}
+.sp-count{color:#00e676;font-family:'Anton',sans-serif;font-size:1rem;}
+
 /* MAIN CONTENT */
 .main{
   flex:1;
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding:8px 20px 30px;
+  padding:12px 20px 30px;
   background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255,210,52,0.1), transparent 60%), #080808;
 }
 
@@ -117,7 +164,7 @@ body{
   font-family:'Anton',sans-serif;
   font-size:2rem;
   color:rgba(255,210,52,0.3);
-  margin:10px 0;
+  margin:8px 0;
   animation:fadeUp 0.4s ease 0.15s both;
 }
 
@@ -134,11 +181,7 @@ body{
   color:#fff;
   filter:drop-shadow(0 0 20px rgba(255,255,255,0.2));
 }
-.fs-right{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
+.fs-right{display:flex;flex-direction:column;gap:2px;}
 .fs-lbl{
   font-family:'Anton',sans-serif;
   font-size:1.3rem;
@@ -148,16 +191,12 @@ body{
   -webkit-text-fill-color:transparent;
   background-clip:text;
 }
-.fs-sub{
-  font-size:0.72rem;
-  color:rgba(255,255,255,0.35);
-  letter-spacing:1px;
-}
+.fs-sub{font-size:0.72rem;color:rgba(255,255,255,0.35);letter-spacing:1px;}
 
 /* CTA */
 .cta-wrap{
   width:100%;
-  margin-top:22px;
+  margin-top:18px;
   animation:fadeUp 0.4s ease 0.25s both;
   position:relative;
 }
@@ -185,23 +224,11 @@ body{
   background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);
   animation:shimmer 1.8s linear infinite;
 }
-.cta-main{
-  font-family:'Anton',sans-serif;
-  font-size:1.4rem;
-  letter-spacing:2px;
-  color:#000;
-  display:block;
-}
-.cta-sub{
-  font-size:0.72rem;
-  font-weight:700;
-  color:rgba(0,0,0,0.45);
-  display:block;
-  margin-top:3px;
-}
+.cta-main{font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:2px;color:#000;display:block;}
+.cta-sub{font-size:0.72rem;font-weight:700;color:rgba(0,0,0,0.45);display:block;margin-top:3px;}
 
 .urgency{
-  margin-top:12px;
+  margin-top:10px;
   text-align:center;
   font-size:0.72rem;
   font-weight:700;
@@ -211,36 +238,24 @@ body{
   justify-content:center;
   gap:6px;
 }
-.udot{
-  width:6px;height:6px;border-radius:50%;
-  background:#00e676;
-  box-shadow:0 0 8px #00e676;
-  animation:blink 1s ease-in-out infinite;
-  flex-shrink:0;
-}
+.udot{width:6px;height:6px;border-radius:50%;background:#00e676;box-shadow:0 0 8px #00e676;animation:blink 1s ease-in-out infinite;flex-shrink:0;}
 
 /* TRUST */
 .trust-row{
-  display:flex;
-  gap:8px;
-  margin-top:20px;
-  width:100%;
+  display:flex;gap:8px;margin-top:16px;width:100%;
   animation:fadeUp 0.4s ease 0.3s both;
 }
 .tr-item{
-  flex:1;
-  background:rgba(255,255,255,0.04);
+  flex:1;background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.07);
-  border-radius:10px;
-  padding:10px 6px;
-  text-align:center;
+  border-radius:10px;padding:10px 6px;text-align:center;
 }
 .tr-icon{font-size:1.1rem;margin-bottom:3px;}
 .tr-lbl{font-size:0.6rem;color:rgba(255,255,255,0.4);line-height:1.3;}
 
 /* DISCLAIMER */
 .disclaimer{
-  margin-top:24px;
+  margin-top:20px;
   padding:12px 16px;
   background:rgba(255,255,255,0.03);
   border-radius:10px;
@@ -251,11 +266,79 @@ body{
   animation:fadeUp 0.4s ease 0.35s both;
 }
 .disclaimer a{color:rgba(255,255,255,0.3);text-decoration:underline;}
+
+/* NOTIFICATION TOAST */
+.notif{
+  position:fixed;
+  bottom:24px;
+  right:16px;
+  background:#1a1a1a;
+  border:1px solid rgba(0,230,118,0.3);
+  border-radius:12px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:240px;
+  z-index:999;
+  animation:notifSlide 4s ease forwards;
+  box-shadow:0 8px 24px rgba(0,0,0,0.5);
+  pointer-events:none;
+}
+.notif-icon{font-size:1.3rem;flex-shrink:0;}
+.notif-text{font-size:0.68rem;line-height:1.4;color:rgba(255,255,255,0.7);}
+.notif-text b{color:#00e676;}
+
+/* EXIT OVERLAY */
+.exit-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.85);
+  z-index:1000;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.exit-overlay.show{display:flex;}
+.exit-box{
+  background:#111;
+  border:1px solid rgba(255,210,52,0.3);
+  border-radius:20px 20px 0 0;
+  padding:28px 24px 36px;
+  width:100%;
+  max-width:480px;
+  animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  text-align:center;
+}
+.exit-title{
+  font-family:'Anton',sans-serif;
+  font-size:1.6rem;
+  letter-spacing:1px;
+  color:#ffd234;
+  margin-bottom:6px;
+}
+.exit-sub{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.5;}
+.exit-cta{
+  display:block;width:100%;padding:18px;
+  background:linear-gradient(135deg,#ffd234,#ff9f00);
+  border:none;border-radius:14px;
+  font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:2px;
+  color:#000;cursor:pointer;text-decoration:none;
+  animation:glow 2s ease-in-out infinite;
+  margin-bottom:12px;
+}
+.exit-dismiss{font-size:0.72rem;color:rgba(255,255,255,0.2);cursor:pointer;text-decoration:underline;}
 </style>
 </head>
 <body>
 
 <div class="top-bar">🔥 NUR HEUTE — EXKLUSIVER BONUS VERFÜGBAR</div>
+
+<div class="countdown-bar">
+  <div class="cd-dot"></div>
+  <div class="cd-lbl">Angebot läuft ab in</div>
+  <div class="cd-timer" id="cdTimer">14:59</div>
+</div>
 
 <div class="banner-wrap">
   <img class="banner-img" src="images/playamo.png" alt="PlayAmo Casino">
@@ -265,11 +348,14 @@ body{
 
 <div class="main">
 
-  <div class="pre-label">Willkommensbonus</div>
+  <div class="social-proof">
+    <div class="sp-dot"></div>
+    <span><span class="sp-count" id="regCount">247</span> Spieler haben sich heute bereits registriert</span>
+  </div>
 
+  <div class="pre-label">Willkommensbonus</div>
   <div class="bonus-amount">3.500€</div>
   <div class="bonus-sub">BONUS-PAKET</div>
-
   <div class="divider-plus">+</div>
 
   <div class="fs-wrap">
@@ -281,13 +367,13 @@ body{
   </div>
 
   <div class="cta-wrap">
-    <a class="cta-btn" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="rippleEffect(event)">
+    <a class="cta-btn" id="mainCta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener" onclick="rippleEffect(event)">
       <span class="cta-main">🎰 BONUS JETZT SICHERN →</span>
       <span class="cta-sub">Kostenlos registrieren · Keine Kreditkarte nötig</span>
     </a>
     <div class="urgency">
       <div class="udot"></div>
-      Angebot läuft — Jetzt sichern
+      <span id="slotsLeft">Noch 18 Bonusplätze verfügbar</span>
     </div>
   </div>
 
@@ -316,15 +402,141 @@ body{
 
 </div>
 
+<!-- NOTIFICATION TOASTS -->
+<div id="notifContainer"></div>
+
+<!-- EXIT INTENT OVERLAY -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-box">
+    <div class="exit-title">⚠️ WARTE KURZ!</div>
+    <div class="exit-sub">Du verlässt die Seite und verlierst deinen<br><b style="color:#ffd234">3.500€ Exklusivbonus</b> — einmalig verfügbar.</div>
+    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407668&bid=1929&lpid=6" target="_blank" rel="noopener">🎰 BONUS DOCH SICHERN →</a>
+    <div class="exit-dismiss" onclick="closeExit()">Nein danke, ich verzichte auf den Bonus</div>
+  </div>
+</div>
+
 <script>
+// ── UTM TRACKING PASSTHROUGH ──────────────────────────────────────────────
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','click_id','sub1','sub2'];
+  const stored = {};
+  utmKeys.forEach(k => { if(params.get(k)) stored[k] = params.get(k); });
+  if(Object.keys(stored).length){
+    sessionStorage.setItem('trackingParams', JSON.stringify(stored));
+  }
+  // Append to CTA link
+  const saved = JSON.parse(sessionStorage.getItem('trackingParams') || '{}');
+  const cta = document.getElementById('mainCta');
+  if(cta && Object.keys(saved).length){
+    const url = new URL(cta.href);
+    Object.entries(saved).forEach(([k,v]) => url.searchParams.set(k,v));
+    cta.href = url.toString();
+  }
+})();
+
+// ── COUNTDOWN TIMER ───────────────────────────────────────────────────────
+(function(){
+  let key = 'cdEnd';
+  let end = parseInt(sessionStorage.getItem(key));
+  if(!end || end < Date.now()){
+    end = Date.now() + 15 * 60 * 1000; // 15 min
+    sessionStorage.setItem(key, end);
+  }
+  function update(){
+    const diff = Math.max(0, end - Date.now());
+    const m = Math.floor(diff / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cdTimer').textContent =
+      String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    if(diff > 0) requestAnimationFrame(update);
+    else document.getElementById('cdTimer').textContent = '00:00';
+  }
+  update();
+})();
+
+// ── LIVE COUNTER ──────────────────────────────────────────────────────────
+(function(){
+  let count = 240 + Math.floor(Math.random() * 30);
+  document.getElementById('regCount').textContent = count;
+  setInterval(() => {
+    if(Math.random() < 0.4){
+      count += Math.floor(Math.random() * 3) + 1;
+      document.getElementById('regCount').textContent = count;
+    }
+  }, 7000);
+})();
+
+// ── SLOTS LEFT COUNTER ────────────────────────────────────────────────────
+(function(){
+  let slots = 18 + Math.floor(Math.random() * 5);
+  document.getElementById('slotsLeft').textContent = 'Noch ' + slots + ' Bonusplätze verfügbar';
+  setInterval(() => {
+    if(Math.random() < 0.3 && slots > 4){
+      slots--;
+      document.getElementById('slotsLeft').textContent = 'Noch ' + slots + ' Bonusplätze verfügbar';
+    }
+  }, 12000);
+})();
+
+// ── NOTIFICATION TOASTS ───────────────────────────────────────────────────
+const names = ['Thomas','Michael','Stefan','Julia','Anna','Sebastian','Tobias','Lisa','Markus','Sarah','Klaus','Petra','Felix','Laura','Daniel'];
+const cities = ['Berlin','München','Hamburg','Köln','Frankfurt','Stuttgart','Düsseldorf','Dresden','Leipzig','Bremen'];
+const msgs = [
+  n => `<b>${n}</b> hat sich gerade registriert`,
+  n => `<b>${n}</b> hat seinen Bonus aktiviert`,
+  n => `<b>${n}</b> spielt gerade bei PlayAmo`,
+];
+const notifContainer = document.getElementById('notifContainer');
+
+function showNotif(){
+  const name = names[Math.floor(Math.random()*names.length)];
+  const city = cities[Math.floor(Math.random()*cities.length)];
+  const msg = msgs[Math.floor(Math.random()*msgs.length)](name);
+  const el = document.createElement('div');
+  el.className = 'notif';
+  el.innerHTML = `<div class="notif-icon">🎰</div><div class="notif-text">${msg}<br><span style="color:rgba(255,255,255,0.3);font-size:0.6rem;">${city} · gerade eben</span></div>`;
+  notifContainer.appendChild(el);
+  setTimeout(()=>el.remove(), 4200);
+}
+
+// First toast after 4s, then every 18-35s
+setTimeout(()=>{
+  showNotif();
+  setInterval(showNotif, 18000 + Math.random() * 17000);
+}, 4000);
+
+// ── EXIT INTENT ───────────────────────────────────────────────────────────
+let exitShown = false;
+document.addEventListener('mouseleave', e => {
+  if(e.clientY < 10 && !exitShown){
+    exitShown = true;
+    document.getElementById('exitOverlay').classList.add('show');
+  }
+});
+// Mobile: show after scroll back up fast
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if(lastY - y > 60 && y < 100 && !exitShown){
+    exitShown = true;
+    document.getElementById('exitOverlay').classList.add('show');
+  }
+  lastY = y;
+});
+function closeExit(){
+  document.getElementById('exitOverlay').classList.remove('show');
+}
+
+// ── RIPPLE ────────────────────────────────────────────────────────────────
 function rippleEffect(e){
-  const btn=e.currentTarget;
-  const r=document.createElement('span');
-  const d=Math.max(btn.clientWidth,btn.clientHeight);
-  const rect=btn.getBoundingClientRect();
-  r.style.cssText=`position:absolute;width:${d}px;height:${d}px;border-radius:50%;background:rgba(255,255,255,0.25);transform:scale(0);animation:ripple 0.6s linear;pointer-events:none;left:${e.clientX-rect.left-d/2}px;top:${e.clientY-rect.top-d/2}px;`;
+  const btn = e.currentTarget;
+  const r = document.createElement('span');
+  const d = Math.max(btn.clientWidth, btn.clientHeight);
+  const rect = btn.getBoundingClientRect();
+  r.style.cssText = `position:absolute;width:${d}px;height:${d}px;border-radius:50%;background:rgba(255,255,255,0.25);transform:scale(0);animation:ripple 0.6s linear;pointer-events:none;left:${e.clientX-rect.left-d/2}px;top:${e.clientY-rect.top-d/2}px;`;
   btn.appendChild(r);
-  setTimeout(()=>r.remove(),600);
+  setTimeout(()=>r.remove(), 600);
 }
 </script>
 </body>
