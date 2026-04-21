@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>400% bis 2.500€ — SlotRave Exklusiv-Bonus</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  font-family:'Figtree',sans-serif;
+  background:#0a0000;
+  color:#fff;
+  max-width:480px;
+  margin:0 auto;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes glowRed{0%,100%{box-shadow:0 0 30px rgba(220,38,38,0.5)}50%{box-shadow:0 0 80px rgba(220,38,38,0.9),0 0 120px rgba(220,38,38,0.2)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+@keyframes ripple{to{transform:scale(4);opacity:0;}}
+@keyframes popIn{0%{transform:scale(0.85);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes notifSlide{0%{transform:translateX(120%);opacity:0}10%{transform:translateX(0);opacity:1}85%{transform:translateX(0);opacity:1}100%{transform:translateX(120%);opacity:0}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(200vh)}}
+
+body::after{content:'';position:fixed;top:0;left:0;right:0;height:2px;background:rgba(220,38,38,0.08);animation:scanline 8s linear infinite;pointer-events:none;z-index:0;}
+
+/* ALERT BAR */
+.alert-bar{
+  background:#dc2626;
+  padding:9px 16px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:0.72rem;font-weight:900;color:#fff;letter-spacing:1px;
+  position:relative;overflow:hidden;
+}
+.alert-bar::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 2s linear infinite;}
+.ab-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 0.6s infinite;flex-shrink:0;}
+
+/* COUNTDOWN */
+.cd-wrap{
+  background:#130000;
+  border-bottom:1px solid rgba(220,38,38,0.2);
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cd-left{font-size:0.68rem;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;}
+.cd-boxes{display:flex;gap:6px;}
+.cd-box{
+  background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.3);
+  border-radius:6px;padding:4px 8px;text-align:center;min-width:38px;
+}
+.cd-n{font-family:'Anton',sans-serif;font-size:1.1rem;color:#ff4444;line-height:1;}
+.cd-l{font-size:0.5rem;color:rgba(255,255,255,0.3);letter-spacing:1px;}
+
+/* HERO */
+.hero{
+  padding:24px 20px 20px;
+  background:radial-gradient(ellipse 100% 80% at 50% -20%,rgba(220,38,38,0.2),transparent 60%),
+             radial-gradient(ellipse 60% 40% at 80% 80%,rgba(150,0,0,0.1),transparent),
+             #0a0000;
+  position:relative;z-index:1;
+  text-align:center;
+}
+
+.excl-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.4);
+  border-radius:4px;padding:4px 12px;margin-bottom:14px;
+  font-size:0.65rem;font-weight:900;color:#ff6666;letter-spacing:2px;
+}
+
+.hero-pre{font-size:0.72rem;font-weight:700;letter-spacing:4px;color:rgba(255,255,255,0.3);margin-bottom:4px;}
+
+.multiplier{
+  font-family:'Anton',sans-serif;font-size:7rem;line-height:0.85;
+  background:linear-gradient(180deg,#ff8888 0%,#dc2626 40%,#8b0000 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 4px 24px rgba(220,38,38,0.6));
+  animation:fadeUp 0.4s ease both;
+  letter-spacing:-4px;
+}
+.mult-sub{
+  font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:4px;
+  color:rgba(255,255,255,0.4);margin-top:2px;
+  animation:fadeUp 0.4s ease 0.05s both;
+}
+
+.bis-wrap{
+  margin:10px 0;
+  animation:fadeUp 0.4s ease 0.1s both;
+}
+.bis-line{font-size:0.72rem;color:rgba(255,255,255,0.25);letter-spacing:2px;font-weight:700;}
+.max-amount{
+  font-family:'Anton',sans-serif;font-size:3.2rem;
+  color:#fff;letter-spacing:-2px;line-height:1;
+  filter:drop-shadow(0 2px 12px rgba(255,255,255,0.1));
+}
+
+.divider-red{
+  display:flex;align-items:center;gap:10px;margin:10px 0;
+  animation:fadeUp 0.4s ease 0.15s both;
+}
+.dr-line{flex:1;height:1px;background:rgba(220,38,38,0.2);}
+.dr-plus{font-family:'Anton',sans-serif;font-size:1.5rem;color:rgba(220,38,38,0.4);}
+
+.fs-row{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  animation:fadeUp 0.4s ease 0.2s both;
+}
+.fs-big{font-family:'Anton',sans-serif;font-size:4rem;color:#fff;line-height:1;}
+.fs-right{text-align:left;}
+.fs-lbl{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:2px;color:#ff4444;line-height:1.1;}
+.fs-sub2{font-size:0.65rem;color:rgba(255,255,255,0.25);letter-spacing:1px;margin-top:2px;}
+
+/* CTA */
+.cta-section{padding:0 20px 20px;background:#0a0000;position:relative;z-index:1;}
+.cta-btn{
+  display:block;width:100%;padding:22px 20px;
+  background:linear-gradient(135deg,#dc2626,#9b1010);
+  border:none;border-radius:14px;cursor:pointer;
+  text-align:center;text-decoration:none;
+  animation:glowRed 2s ease-in-out infinite,pulse 2s ease-in-out infinite;
+  position:relative;overflow:hidden;transition:transform 0.12s;
+}
+.cta-btn:hover{transform:scale(1.02);}
+.cta-btn:active{transform:scale(0.97);}
+.cta-btn::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 2s linear infinite;}
+.cta-main{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:2px;color:#fff;display:block;}
+.cta-sub{font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.5);display:block;margin-top:3px;}
+.slots-left{
+  margin-top:10px;text-align:center;
+  font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.25);
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.sl-dot{width:5px;height:5px;border-radius:50%;background:#dc2626;box-shadow:0 0 6px #dc2626;animation:blink 0.8s infinite;flex-shrink:0;}
+
+/* TRUST */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 20px 20px;}
+.tg-item{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.05);
+  border-radius:10px;padding:10px 4px;text-align:center;
+}
+.tg-icon{font-size:1rem;margin-bottom:3px;}
+.tg-lbl{font-size:0.58rem;color:rgba(255,255,255,0.3);line-height:1.3;}
+
+/* FEATURES */
+.features{padding:0 20px 20px;display:flex;flex-direction:column;gap:8px;}
+.feat-item{
+  background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.15);
+  border-radius:10px;padding:12px 14px;
+  display:flex;align-items:center;gap:10px;
+  font-size:0.78rem;color:rgba(255,255,255,0.6);
+}
+.feat-icon{font-size:1.1rem;flex-shrink:0;}
+.feat-txt b{color:#fff;display:block;margin-bottom:1px;}
+
+/* BOTTOM CTA */
+.bottom-cta{
+  margin:0 20px 20px;
+  display:block;padding:18px;
+  background:linear-gradient(135deg,#dc2626,#9b1010);
+  border-radius:12px;text-align:center;text-decoration:none;
+  font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:2px;color:#fff;
+  animation:glowRed 2.5s ease-in-out infinite;
+  position:relative;overflow:hidden;
+}
+.bottom-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:shimmer 2s linear infinite;}
+
+/* DISCLAIMER */
+.disclaimer{margin:0 20px 30px;padding:12px;background:rgba(255,255,255,0.02);border-radius:8px;font-size:0.58rem;color:rgba(255,255,255,0.15);line-height:1.5;text-align:center;}
+.disclaimer a{color:rgba(255,255,255,0.2);text-decoration:underline;}
+
+/* NOTIFICATION */
+.notif{position:fixed;bottom:20px;right:12px;background:#1a0000;border:1px solid rgba(220,38,38,0.3);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;max-width:220px;z-index:999;animation:notifSlide 4s ease forwards;box-shadow:0 4px 16px rgba(0,0,0,0.5);pointer-events:none;}
+.notif-icon{font-size:1.2rem;flex-shrink:0;}
+.notif-text{font-size:0.65rem;line-height:1.4;color:rgba(255,255,255,0.6);}
+.notif-text b{color:#fff;}
+
+/* EXIT */
+.exit-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+.exit-overlay.show{display:flex;}
+.exit-box{background:#120000;border:1px solid rgba(220,38,38,0.3);border-radius:20px 20px 0 0;padding:28px 24px 36px;width:100%;max-width:480px;animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;text-align:center;}
+.exit-title{font-family:'Anton',sans-serif;font-size:1.5rem;color:#ff4444;margin-bottom:6px;animation:shake 0.5s ease both;}
+.exit-sub{font-size:0.82rem;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.5;}
+.exit-cta{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#dc2626,#9b1010);border:none;border-radius:12px;font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:2px;color:#fff;cursor:pointer;text-decoration:none;margin-bottom:12px;animation:glowRed 2s ease-in-out infinite;}
+.exit-dismiss{font-size:0.7rem;color:rgba(255,255,255,0.2);cursor:pointer;text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="alert-bar">
+  <div class="ab-dot"></div>
+  EXKLUSIV-ANGEBOT · NUR FÜR BEGRENZTE ZEIT
+  <div class="ab-dot"></div>
+</div>
+
+<div class="cd-wrap">
+  <div class="cd-left">LÄUFT AB IN</div>
+  <div class="cd-boxes">
+    <div class="cd-box"><div class="cd-n" id="cdH">00</div><div class="cd-l">STD</div></div>
+    <div class="cd-box"><div class="cd-n" id="cdM">14</div><div class="cd-l">MIN</div></div>
+    <div class="cd-box"><div class="cd-n" id="cdS">59</div><div class="cd-l">SEK</div></div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="excl-badge">🔥 EXKLUSIV-BONUS</div>
+  <div class="hero-pre">WILLKOMMENSBONUS</div>
+  <div class="multiplier">400%</div>
+  <div class="mult-sub">AUF DEINE EINZAHLUNG</div>
+  <div class="bis-wrap">
+    <div class="bis-line">BIS ZU</div>
+    <div class="max-amount">2.500€</div>
+  </div>
+  <div class="divider-red">
+    <div class="dr-line"></div>
+    <div class="dr-plus">+</div>
+    <div class="dr-line"></div>
+  </div>
+  <div class="fs-row">
+    <div class="fs-big">150</div>
+    <div class="fs-right">
+      <div class="fs-lbl">FREI-<br>SPIELE</div>
+      <div class="fs-sub2">GRATIS OBENDRAUF</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <a class="cta-btn" id="mainCta3" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener" onclick="rippleEffect(event)">
+    <span class="cta-main">💥 JETZT 400% BONUS HOLEN →</span>
+    <span class="cta-sub">Gratis registrieren · Sofort spielen</span>
+  </a>
+  <div class="slots-left">
+    <div class="sl-dot"></div>
+    <span id="slotsLeft3">Noch 12 Bonusplätze verfügbar</span>
+  </div>
+</div>
+
+<div class="trust-grid">
+  <div class="tg-item"><div class="tg-icon">🔒</div><div class="tg-lbl">SSL<br>Sicher</div></div>
+  <div class="tg-item"><div class="tg-icon">⚡</div><div class="tg-lbl">Schnelle<br>Zahlung</div></div>
+  <div class="tg-item"><div class="tg-icon">✅</div><div class="tg-lbl">Lizenz-<br>iert</div></div>
+  <div class="tg-item"><div class="tg-icon">🎁</div><div class="tg-lbl">+Bonus-<br>Spiel</div></div>
+</div>
+
+<div class="features">
+  <div class="feat-item">
+    <div class="feat-icon">💰</div>
+    <div class="feat-txt"><b>400% — höchste Multiplizierung im Test</b>Aus 100€ werden 500€ Spielguthaben — sofort.</div>
+  </div>
+  <div class="feat-item">
+    <div class="feat-icon">🎰</div>
+    <div class="feat-txt"><b>150 Freispiele gratis obendrauf</b>Auf Top-Slots, kein separater Umsatz.</div>
+  </div>
+  <div class="feat-item">
+    <div class="feat-icon">🎲</div>
+    <div class="feat-txt"><b>Bonus-Spiel inklusive</b>Extra Gewinnchance direkt nach Registrierung.</div>
+  </div>
+</div>
+
+<a class="bottom-cta" id="bottomCta3" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener">
+  💥 400% BONUS JETZT SICHERN →
+</a>
+
+<div class="disclaimer">
+  18+ · Nur für Neukunden · Glücksspiel kann süchtig machen. Hilfe: <a href="https://www.bzga.de" target="_blank">bzga.de</a> · Werbung — Partnerlink · AGB des Anbieters gelten · Umsatzbedingungen: 40x.
+</div>
+
+<div id="notifContainer3"></div>
+
+<div class="exit-overlay" id="exitOverlay3">
+  <div class="exit-box">
+    <div class="exit-title">⛔ WARTE!</div>
+    <div class="exit-sub">Dein <b style="color:#ff4444">400% Exklusiv-Bonus</b> verfällt wenn du jetzt gehst.<br>Nur noch <span id="exitSlots">12</span> Plätze frei.</div>
+    <a class="exit-cta" href="https://mu.fastmui.com/redirect.aspx?pid=407666&bid=2172&lpid=2712" target="_blank" rel="noopener">💥 BONUS DOCH SICHERN →</a>
+    <div class="exit-dismiss" onclick="document.getElementById('exitOverlay3').classList.remove('show')">Nein danke, ich verzichte</div>
+  </div>
+</div>
+
+<script>
+// UTM passthrough
+(function(){
+  const p=new URLSearchParams(window.location.search);
+  const keys=['utm_source','utm_medium','utm_campaign','utm_content','click_id','sub1','sub2'];
+  const s={};keys.forEach(k=>{if(p.get(k))s[k]=p.get(k);});
+  if(Object.keys(s).length)sessionStorage.setItem('tp3',JSON.stringify(s));
+  const saved=JSON.parse(sessionStorage.getItem('tp3')||'{}');
+  document.querySelectorAll('a[href*="fastmui"]').forEach(a=>{
+    if(Object.keys(saved).length){const u=new URL(a.href);Object.entries(saved).forEach(([k,v])=>u.searchParams.set(k,v));a.href=u.toString();}
+  });
+})();
+
+// Countdown
+(function(){
+  const key='cdEnd3';
+  let end=parseInt(sessionStorage.getItem(key));
+  if(!end||end<Date.now()){end=Date.now()+15*60*1000;sessionStorage.setItem(key,end);}
+  function update(){
+    const diff=Math.max(0,end-Date.now());
+    const h=Math.floor(diff/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+    if(diff>0)requestAnimationFrame(update);
+  }
+  update();
+})();
+
+// Slots left
+let sl3=12+Math.floor(Math.random()*6);
+document.getElementById('slotsLeft3').textContent='Noch '+sl3+' Bonusplätze verfügbar';
+document.getElementById('exitSlots').textContent=sl3;
+setInterval(()=>{if(Math.random()<0.25&&sl3>3){sl3--;document.getElementById('slotsLeft3').textContent='Noch '+sl3+' Bonusplätze verfügbar';document.getElementById('exitSlots').textContent=sl3;}},15000);
+
+// Toasts
+const names3=['Thomas','Michael','Stefan','Julia','Anna','Markus'];
+const cities3=['Berlin','München','Hamburg','Köln','Frankfurt','Wien'];
+const nc3=document.getElementById('notifContainer3');
+function showN3(){
+  const n=names3[Math.floor(Math.random()*names3.length)];
+  const c=cities3[Math.floor(Math.random()*cities3.length)];
+  const msgs=[`<b>${n}</b> hat den 400% Bonus aktiviert`,`<b>${n}</b> spielt gerade bei SlotRave`,`<b>${n}</b> hat sich gerade registriert`];
+  const m=msgs[Math.floor(Math.random()*msgs.length)];
+  const el=document.createElement('div');el.className='notif';
+  el.innerHTML=`<div class="notif-icon">💥</div><div class="notif-text">${m}<br><span style="color:rgba(255,255,255,0.25);font-size:0.6rem;">${c} · gerade eben</span></div>`;
+  nc3.appendChild(el);setTimeout(()=>el.remove(),4200);
+}
+setTimeout(()=>{showN3();setInterval(showN3,22000+Math.random()*13000);},6000);
+
+// Exit intent
+let ex3=false;
+document.addEventListener('mouseleave',e=>{if(e.clientY<10&&!ex3){ex3=true;document.getElementById('exitOverlay3').classList.add('show');}});
+let ly3=0;window.addEventListener('scroll',()=>{const y=window.scrollY;if(ly3-y>60&&y<100&&!ex3){ex3=true;document.getElementById('exitOverlay3').classList.add('show');}ly3=y;});
+
+function rippleEffect(e){
+  const btn=e.currentTarget;const r=document.createElement('span');
+  const d=Math.max(btn.clientWidth,btn.clientHeight);const rect=btn.getBoundingClientRect();
+  r.style.cssText=`position:absolute;width:${d}px;height:${d}px;border-radius:50%;background:rgba(255,255,255,0.2);transform:scale(0);animation:ripple 0.6s linear;pointer-events:none;left:${e.clientX-rect.left-d/2}px;top:${e.clientY-rect.top-d/2}px;`;
+  btn.appendChild(r);setTimeout(()=>r.remove(),600);
+}
+</script>
+</body>
+</html>
