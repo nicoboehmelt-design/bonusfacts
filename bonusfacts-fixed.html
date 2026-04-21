@@ -214,6 +214,11 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 .rg-links{display:flex;gap:7px;flex-wrap:wrap;}
 .rg-link{font-size:0.63rem;font-weight:700;padding:4px 10px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);color:var(--grey);text-decoration:none;transition:all 0.15s;}
 .rg-link:hover{color:var(--white);border-color:rgba(255,255,255,0.2);}
+/* BANNER IMAGE */
+.cc-banner-wrap{position:relative;overflow:hidden;height:130px;background:var(--bg3);}
+.cc-banner{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.4s ease;}
+.casino-card:hover .cc-banner{transform:scale(1.04);}
+.cc-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,0.6));pointer-events:none;}
 /* AFFILIATE NOTICE */
 .aff-notice{margin:0 18px 14px;background:rgba(255,210,52,0.02);border:1px solid rgba(255,210,52,0.08);border-radius:10px;padding:10px 14px;font-size:0.63rem;color:rgba(255,255,255,0.28);line-height:1.6;position:relative;z-index:2;}
 .aff-notice b{color:rgba(255,210,52,0.45);}
@@ -292,427 +297,430 @@ body::after{content:'';position:fixed;top:0;left:0;right:0;height:3px;background
 
 <div class="aff-notice"><b>Affiliate-Hinweis:</b> BonusFacts erhält eine Provision, wenn du über unsere Links ein Konto erstellst — ohne Mehrkosten für dich. Die Reihenfolge der Casinos kann durch Affiliate-Vereinbarungen beeinflusst sein. Alle Bewertungen basieren auf eigener Recherche.</div>
 
-<!-- 1. CASUMO -->
-<div class="casino-card cc-gold" onclick="handleCTA('casumo', this, event)">
+<!-- 1. PLAYAMO -->
+<div class="casino-card cc-gold" onclick="handleCTA('playamo', this, event)">
   <div class="card-shimmer"></div>
   <div class="rank-badge rb1">#1 TOP-PICK</div>
   <div class="hot-badge">🔥 HOT</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/playamo.png" alt="PlayAmo Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🎠</div>
-    <div class="cc-info">
-      <div class="cc-name">Casumo</div>
-      <div class="cc-desc" data-de="Premium-Marke · Starkes Affiliate-Programm" data-en="Premium brand · Strong affiliate program">Premium-Marke · Starkes Affiliate-Programm</div>
-    </div>
+    <div class="cc-info"><div class="cc-name">PlayAmo</div><div class="cc-desc">Beliebt · Schnelle Auszahlungen · 3.000+ Slots</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">9.4</div><div class="cc-stars">★★★★★</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 300€</div>
-        <div class="bbs" data-de="Einzahlungsbonus" data-en="Deposit bonus">Einzahlungsbonus</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">50</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">+ 4 Einzahlungsboni</div></div>
+      <div class="bb-right"><div class="fs-num">150</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="MGA lizenziert · Faire Bedingungen" data-en="MGA licensed · Fair terms">MGA lizenziert · Faire Bedingungen</span></div>
+    <div class="bbw good">✓ Curaçao lizenziert · Faire Bedingungen</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-g">✓ MGA Lizenz</div>
-    <div class="cctag tag-a">Gamification</div>
-    <div class="cctag tag-w">Slots · Live</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>30x</span></div>
-    <div class="wi">Min. Einzahlung: <span>10€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Sehr beliebt</div><div class="cctag tag-a">3.000+ Slots</div><div class="cctag tag-w">Live · Jackpot</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>10€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% Bonus bis 300€ auf die erste Einzahlung. 30-fache Umsatzbedingung auf Bonus+Einzahlung. Max. Einsatz während des Bonus: 5€/Runde. Gültig für 30 Tage. Nur für Neukunden. AGB gelten. <b>Lizenz:</b> MGA (Malta). <b>Auszahlung:</b> bis 24h.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('casumo', this, event)" data-de="🎠 BONUS JETZT SICHERN →" data-en="🎠 GRAB BONUS NOW →">🎠 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Premium-Marke mit fairen Konditionen" data-en="Premium brand, fair conditions">Premium-Marke mit fairen Konditionen</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 150 FS auf 1. Einzahlung. 40x Umsatzbedingung auf Bonus. Min. Einzahlung 10€. Max. Einsatz 5€. FS gültig 7 Tage. Bonus gültig 30 Tage. Nur Neukunden. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('playamo', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Einer der beliebtesten Anbieter weltweit</div>
 </div>
 
-<!-- 2. UNIBET -->
-<div class="casino-card cc-green" onclick="handleCTA('unibet', this, event)">
+<!-- 2. BOBCASINO -->
+<div class="casino-card cc-green" onclick="handleCTA('bobcasino', this, event)">
   <div class="card-shimmer"></div>
   <div class="rank-badge rb-def">#2</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/bobcasino.png" alt="Bob Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🎯</div>
-    <div class="cc-info">
-      <div class="cc-name">Unibet</div>
-      <div class="cc-desc" data-de="Kindred Group · Professionelles Affiliate" data-en="Kindred Group · Pro affiliate">Kindred Group · Professionelles Affiliate</div>
-    </div>
+    <div class="cc-info"><div class="cc-name">Bob Casino</div><div class="cc-desc">Freundliches Design · Große Spielauswahl</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">9.2</div><div class="cc-stars">★★★★★</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="STARTBONUS" data-en="WELCOME BONUS">STARTBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv" data-de="Bis zu 200€" data-en="Up to €200">Bis zu 200€</div>
-        <div class="bbs" data-de="Sport + Casino" data-en="Sports + Casino">Sport + Casino</div>
-      </div>
-      <div class="bb-right fs-none">
-        <div class="fs-num">—</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 300€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">100</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="Kindred Group — sehr vertrauenswürdig" data-en="Kindred Group — highly trusted">Kindred Group — sehr vertrauenswürdig</span></div>
+    <div class="bbw good">✓ Lizenziert · Schnelle Auszahlung</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-g">✓ Top Affiliate</div>
-    <div class="cctag tag-w">Sport · Casino</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>25x</span></div>
-    <div class="wi">Min. Einzahlung: <span>10€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>21 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Lizenziert</div><div class="cctag tag-a">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> Bis zu 200€ Bonus auf die erste Einzahlung. 25-fache Umsatzbedingung. Max. Einsatz 5€. Gültig 21 Tage. Nur für Neukunden. AGB gelten. <b>Lizenz:</b> MGA & UKGC. <b>Auszahlung:</b> bis 48h.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('unibet', this, event)" data-de="🎯 BONUS JETZT SICHERN →" data-en="🎯 GRAB BONUS NOW →">🎯 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Kindred Group — einer der seriösesten Anbieter" data-en="Kindred Group — one of the most reputable">Kindred Group — einer der seriösesten Anbieter</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 300€ + 100 FS. 40x Umsatz auf Bonus. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. Nur Neukunden. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('bobcasino', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Zuverlässiger Anbieter mit gutem Support</div>
 </div>
 
-<!-- 3. BETSSON -->
-<div class="casino-card cc-blue" onclick="handleCTA('betsson', this, event)">
+<!-- 3. WOOCASINO -->
+<div class="casino-card cc-blue" onclick="handleCTA('woocasino', this, event)">
   <div class="card-shimmer"></div>
   <div class="rank-badge rb-def">#3</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/woocasino.png" alt="Woo Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🔵</div>
-    <div class="cc-info">
-      <div class="cc-name">Betsson</div>
-      <div class="cc-desc" data-de="Schwedischer Konzern · Sehr verlässlich" data-en="Swedish company · Very reliable">Schwedischer Konzern · Sehr verlässlich</div>
-    </div>
+    <div class="cc-info"><div class="cc-name">Woo Casino</div><div class="cc-desc">Krypto-freundlich · Viele Zahlungsmethoden</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">9.1</div><div class="cc-stars">★★★★★</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 200€</div>
-        <div class="bbs" data-de="Schnelle Auszahlungen" data-en="Fast payouts">Schnelle Auszahlungen</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">50</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 300€</div><div class="bbs">+ Krypto-Bonus</div></div>
+      <div class="bb-right"><div class="fs-num">150</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="Börsennotiert · Maximale Sicherheit" data-en="Listed · Maximum safety">Börsennotiert · Maximale Sicherheit</span></div>
+    <div class="bbw good">✓ Krypto · Schnelle Auszahlung</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-g">✓ Sehr verlässlich</div>
-    <div class="cctag tag-a">Slots · Live · Sport</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>35x</span></div>
-    <div class="wi">Min. Einzahlung: <span>20€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Krypto</div><div class="cctag tag-a">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>35x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 200€ + 50 Freispiele. 35-fache Umsatzbedingung auf Bonusbetrag. Min. Einzahlung 20€. Max. Einsatz 5€. Freispiele: 0.10€/Spin. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA. <b>Auszahlung:</b> bis 3 Werktage.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('betsson', this, event)" data-de="🔵 BONUS JETZT SICHERN →" data-en="🔵 GRAB BONUS NOW →">🔵 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Schwedischer Börsenkonzern — sehr sicher" data-en="Swedish listed company — very safe">Schwedischer Börsenkonzern — sehr sicher</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 300€ + 150 FS. 35x Umsatz auf Bonus. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('woocasino', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Top-Wahl für Krypto-Spieler</div>
 </div>
 
-<!-- 4. CASINOLAND -->
-<div class="casino-card cc-purple" onclick="handleCTA('casinoland', this, event)">
+<!-- 4. COOKIECASINO -->
+<div class="casino-card cc-orange" onclick="handleCTA('cookiecasino', this, event)">
   <div class="card-shimmer"></div>
   <div class="rank-badge rb-def">#4</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/cookiecasino.png" alt="Cookie Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🎪</div>
-    <div class="cc-info">
-      <div class="cc-name">Casinoland</div>
-      <div class="cc-desc" data-de="Viele Slots · Gute CPA-Deals" data-en="Many slots · Good CPA deals">Viele Slots · Gute CPA-Deals</div>
+    <div class="cc-info"><div class="cc-name">Cookie Casino</div><div class="cc-desc">Großes Spielangebot · Täglich neue Aktionen</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">9.0</div><div class="cc-stars">★★★★★</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">120</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
+    <div class="bbw good">✓ MGA lizenziert · Faire Konditionen</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ MGA Lizenz</div><div class="cctag tag-a">Slots · Jackpot</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 120 FS. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA (Malta).</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('cookiecasino', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ MGA-lizenziert — einer der sichersten Anbieter</div>
+</div>
+
+<!-- 5. SPINIA -->
+<div class="casino-card cc-purple" onclick="handleCTA('spinia', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#5</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/spinia.png" alt="Spinia Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">Spinia</div><div class="cc-desc">MGA Lizenz · Viele Freispiele · Tägl. Aktionen</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.9</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 200€</div><div class="bbs">MGA lizenziert</div></div>
+      <div class="bb-right"><div class="fs-num">200</div><div class="fs-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="bbw good">✓ MGA · Faire Umsatzbedingungen</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ MGA Lizenz</div><div class="cctag tag-a">200 FS</div><div class="cctag tag-w">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>35x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 200€ + 200 FS. 35x Umsatz auf Bonus. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA (Malta).</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('spinia', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ MGA-lizenziert mit bestem Freispiel-Angebot</div>
+</div>
+
+<!-- 6. NATIONAL CASINO -->
+<div class="casino-card cc-gold" onclick="handleCTA('nationalcasino', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#6</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/nationalcasino.png" alt="National Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">National Casino</div><div class="cc-desc">Riesige Auswahl · Schnelle Auszahlungen</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">8.8</div><div class="cc-stars">★★★★☆</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 200€</div>
-        <div class="bbs" data-de="Slots-Fokus" data-en="Slots focus">Slots-Fokus</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">120</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">100</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="Starke Slot-Auswahl · CPA-optimiert" data-en="Strong slots · CPA optimized">Starke Slot-Auswahl · CPA-optimiert</span></div>
+    <div class="bbw good">✓ Curaçao · Große Auswahl</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-a">Slots-Fokus</div>
-    <div class="cctag tag-g">✓ Lizenziert</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>40x</span></div>
-    <div class="wi">Min. Einzahlung: <span>10€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Lizenziert</div><div class="cctag tag-a">5.000+ Spiele</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>10€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 200€ + 120 Freispiele. 40-fache Umsatzbedingung auf Bonus. Min. Einzahlung 10€. Max. Einsatz 5€. Freispiele auf ausgewählten Slots. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('casinoland', this, event)" data-de="🎪 BONUS JETZT SICHERN →" data-en="🎪 GRAB BONUS NOW →">🎪 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Gut für Slots-Liebhaber" data-en="Great for slots lovers">Gut für Slots-Liebhaber</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 100 FS. 40x Umsatz. Min. Einzahlung 10€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('nationalcasino', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Über 5.000 Spiele verfügbar</div>
 </div>
 
-<!-- 5. WAZAMBA -->
-<div class="casino-card cc-orange" onclick="handleCTA('wazamba', this, event)">
+<!-- 7. BETAMO -->
+<div class="casino-card cc-blue" onclick="handleCTA('betamo', this, event)">
   <div class="card-shimmer"></div>
-  <div class="rank-badge rb-def">#5</div>
+  <div class="rank-badge rb-def">#7</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/betamo.png" alt="Betamo Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🦁</div>
-    <div class="cc-info">
-      <div class="cc-name">Wazamba</div>
-      <div class="cc-desc" data-de="Beliebtes Themen-Casino · Treue-System" data-en="Popular themed casino · Loyalty">Beliebtes Themen-Casino · Treue-System</div>
-    </div>
+    <div class="cc-info"><div class="cc-name">Betamo</div><div class="cc-desc">Wöchentlicher Cashback · Treue-Programm</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">8.7</div><div class="cc-stars">★★★★☆</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="STARTBONUS" data-en="WELCOME BONUS">STARTBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 500€</div>
-        <div class="bbs" data-de="Avatare &amp; Quests" data-en="Avatars &amp; Quests">Avatare &amp; Quests</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">200</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 400€</div><div class="bbs">+ Cashback</div></div>
+      <div class="bb-right"><div class="fs-num">100</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="Einzigartiges Spielerlebnis" data-en="Unique gaming experience">Einzigartiges Spielerlebnis</span></div>
+    <div class="bbw good">✓ Curaçao · Cashback-System</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-g">✓ Gamification</div>
-    <div class="cctag tag-a">Themen-Design</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>35x</span></div>
-    <div class="wi">Min. Einzahlung: <span>20€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-a">Cashback</div><div class="cctag tag-g">✓ Lizenziert</div><div class="cctag tag-w">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 200 Freispiele. 35-fache Umsatzbedingung. Min. Einzahlung 20€. Max. Einsatz 5€. Freispiele werden täglich vergeben. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('wazamba', this, event)" data-de="🦁 BONUS JETZT SICHERN →" data-en="🦁 GRAB BONUS NOW →">🦁 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Einzigartiges Casino mit Spaßfaktor" data-en="Unique casino, lots of fun">Einzigartiges Casino mit Spaßfaktor</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 400€ + 100 FS + Cashback. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('betamo', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Cashback jede Woche — echte Extra-Chance</div>
 </div>
 
-<!-- 6. N1BET -->
-<div class="casino-card cc-blue" onclick="handleCTA('n1bet', this, event)">
+<!-- 8. BETCHAN -->
+<div class="casino-card cc-green" onclick="handleCTA('betchan', this, event)">
   <div class="card-shimmer"></div>
-  <div class="rank-badge rb-def">#6</div>
+  <div class="rank-badge rb-def">#8</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/betchan.png" alt="BetChan Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🎮</div>
-    <div class="cc-info">
-      <div class="cc-name">N1Bet</div>
-      <div class="cc-desc" data-de="N1-Gruppe · Sehr affiliate-freundlich" data-en="N1 Group · Very affiliate-friendly">N1-Gruppe · Sehr affiliate-freundlich</div>
-    </div>
+    <div class="cc-info"><div class="cc-name">BetChan</div><div class="cc-desc">Cashback · Live-Casino · Tägl. Promotionen</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">8.6</div><div class="cc-stars">★★★★☆</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbl">CASHBACK BONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 500€</div>
-        <div class="bbs" data-de="N1-Gruppe" data-en="N1 Group">N1-Gruppe</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">200</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">15% Cashback</div><div class="bbs">Wöchentlich</div></div>
+      <div class="bb-right"><div class="fs-num">50</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="N1-Gruppe — affiliate-optimiert" data-en="N1 Group — affiliate optimized">N1-Gruppe — affiliate-optimiert</span></div>
+    <div class="bbw good">✓ Curaçao · Cashback ohne Limit</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-g">✓ Affiliate-Friendly</div>
-    <div class="cctag tag-w">Sport · Slots · Live</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>40x</span></div>
-    <div class="wi">Min. Einzahlung: <span>10€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ 15% Cashback</div><div class="cctag tag-a">Live Casino</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>35x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>7 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 200 Freispiele. 40-fache Umsatzbedingung. Min. Einzahlung 10€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao. <b>Auszahlung:</b> bis 24h.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('n1bet', this, event)" data-de="🎮 BONUS JETZT SICHERN →" data-en="🎮 GRAB BONUS NOW →">🎮 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Gute Konditionen für Spieler & Affiliates" data-en="Good for players & affiliates">Gute Konditionen für Spieler & Affiliates</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 15% wöchentlicher Cashback + 50 FS auf 1. Einzahlung. 35x Umsatz auf FS-Gewinne. Min. Einzahlung 20€. Max. Einsatz 5€. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('betchan', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Bester Cashback-Deal im Vergleich</div>
 </div>
 
-<!-- 7. GOLDSPIN -->
-<div class="casino-card cc-gold" onclick="handleCTA('goldspin', this, event)">
-  <div class="card-shimmer"></div>
-  <div class="rank-badge rb-def">#7</div>
-  <div class="cc-top">
-    <div class="cc-logo">✨</div>
-    <div class="cc-info">
-      <div class="cc-name">GoldSpin</div>
-      <div class="cc-desc" data-de="Hoher Bonus · Gute Conversion" data-en="High bonus · Good conversion">Hoher Bonus · Gute Conversion</div>
-    </div>
-    <div class="cc-score-wrap"><div class="cc-score-num">8.5</div><div class="cc-stars">★★★★☆</div></div>
-  </div>
-  <div class="cc-bonus-box">
-    <div class="bbl" data-de="MEGA BONUS" data-en="MEGA BONUS">MEGA BONUS</div>
-    <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv" data-de="Bis zu 1.000€" data-en="Up to €1,000">Bis zu 1.000€</div>
-        <div class="bbs" data-de="Mega-Paket" data-en="Mega package">Mega-Paket</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">250</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
-    </div>
-    <div class="bbw warn">⚠ <span data-de="Bedingungen vor Einzahlung prüfen" data-en="Check terms before depositing">Bedingungen vor Einzahlung prüfen</span></div>
-  </div>
-  <div class="cc-tags">
-    <div class="cctag tag-a">Mega-Bonus</div>
-    <div class="cctag tag-w">Slots · Live</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>45x</span></div>
-    <div class="wi">Min. Einzahlung: <span>20€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>21 Tage</span></div>
-  </div>
-  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> Bis zu 1.000€ + 250 Freispiele. 45-fache Umsatzbedingung — <b>höher als Durchschnitt, bitte prüfen.</b> Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 21 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('goldspin', this, event)" data-de="✨ BONUS JETZT SICHERN →" data-en="✨ GRAB BONUS NOW →">✨ BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-warn">⚠ <span data-de="Hoher Bonus — Bedingungen beachten" data-en="High bonus — check terms">Hoher Bonus — Bedingungen beachten</span></div>
-</div>
-
-<!-- 8. GLORION -->
-<div class="casino-card cc-purple" onclick="handleCTA('glorion', this, event)">
-  <div class="card-shimmer"></div>
-  <div class="rank-badge rb-def">#8</div>
-  <div class="cc-top">
-    <div class="cc-logo">👑</div>
-    <div class="cc-info">
-      <div class="cc-name">Glorion</div>
-      <div class="cc-desc" data-de="7.250+ Spiele · Starkes Neukunden-Angebot" data-en="7,250+ games · Strong new player offer">7.250+ Spiele · Starkes Neukunden-Angebot</div>
-    </div>
-    <div class="cc-score-wrap"><div class="cc-score-num">8.5</div><div class="cc-stars">★★★★☆</div></div>
-  </div>
-  <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
-    <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 500€</div>
-        <div class="bbs" data-de="7.250+ Spiele" data-en="7,250+ games">7.250+ Spiele</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">100</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
-    </div>
-    <div class="bbw good">✓ <span data-de="Riesige Spielauswahl" data-en="Massive game selection">Riesige Spielauswahl</span></div>
-  </div>
-  <div class="cc-tags">
-    <div class="cctag tag-a">7.250+ Spiele</div>
-    <div class="cctag tag-g">✓ Lizenziert</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>35x</span></div>
-    <div class="wi">Min. Einzahlung: <span>20€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
-  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ auf die erste Einzahlung. 35-fache Umsatzbedingung. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. Nur für Neukunden. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('glorion', this, event)" data-de="👑 BONUS JETZT SICHERN →" data-en="👑 GRAB BONUS NOW →">👑 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Beste Spielauswahl im Vergleich" data-en="Best game selection">Beste Spielauswahl im Vergleich</span></div>
-</div>
-
-<!-- 9. DUDESPIN -->
-<div class="casino-card cc-green" onclick="handleCTA('dudespin', this, event)">
+<!-- 9. CASINOCHAN -->
+<div class="casino-card cc-purple" onclick="handleCTA('casinochan', this, event)">
   <div class="card-shimmer"></div>
   <div class="rank-badge rb-def">#9</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/casinochan.png" alt="Casino Chan"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">🎲</div>
-    <div class="cc-info">
-      <div class="cc-name">DudeSpin</div>
-      <div class="cc-desc" data-de="MGA · Cashback · Turniere" data-en="MGA · Cashback · Tournaments">MGA · Cashback · Turniere</div>
+    <div class="cc-info"><div class="cc-name">Casino Chan</div><div class="cc-desc">Anime-Design · Großzügige Boni · Turniere</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.5</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">150</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
+    <div class="bbw good">✓ Curaçao · Turniere</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-a">Turniere</div><div class="cctag tag-g">✓ Lizenziert</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 150 FS. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('casinochan', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Einzigartiges Design mit starkem Bonuspaket</div>
+</div>
+
+<!-- 10. MASONSLOTS -->
+<div class="casino-card cc-red" onclick="handleCTA('masonslots', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#10</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/masonslots.png" alt="Mason Slots"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">Mason Slots</div><div class="cc-desc">Slots-Spezialist · Hohe Freispielanzahl</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.5</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Slots-Fokus</div></div>
+      <div class="bb-right"><div class="fs-num">200</div><div class="fs-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="bbw good">✓ Curaçao · Top Slots-Auswahl</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-a">200 FS</div><div class="cctag tag-g">✓ Lizenziert</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>45x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 200 FS. 45x Umsatz — höher als Durchschnitt, bitte prüfen. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('masonslots', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Beste Freispiel-Anzahl im Vergleich</div>
+</div>
+
+<!-- 11. BIZZO -->
+<div class="casino-card cc-gold" onclick="handleCTA('bizzo', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#11</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/bizzo.png" alt="Bizzo Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">Bizzo Casino</div><div class="cc-desc">Krypto · Live · Großes Spielangebot</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">8.4</div><div class="cc-stars">★★★★☆</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 500€</div>
-        <div class="bbs" data-de="+ Cashback + Turniere" data-en="+ Cashback + Tournaments">+ Cashback + Turniere</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">150</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 400€</div><div class="bbs">+ Krypto-Option</div></div>
+      <div class="bb-right"><div class="fs-num">150</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="MGA lizenziert · Cashback-System" data-en="MGA licensed · Cashback system">MGA lizenziert · Cashback-System</span></div>
+    <div class="bbw good">✓ Curaçao · Krypto-freundlich</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-g">✓ MGA Lizenz</div>
-    <div class="cctag tag-a">Cashback</div>
-    <div class="cctag tag-w">Turniere</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>30x</span></div>
-    <div class="wi">Min. Einzahlung: <span>20€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Krypto</div><div class="cctag tag-a">Live Casino</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + Cashback. 30-fache Umsatzbedingung. Min. Einzahlung 20€. Max. Einsatz 5€. Cashback wöchentlich ausgezahlt. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> MGA (Malta).</div>
-  <button class="cc-cta-btn btn-gold" onclick="handleCTA('dudespin', this, event)" data-de="🎲 BONUS JETZT SICHERN →" data-en="🎲 GRAB BONUS NOW →">🎲 BONUS JETZT SICHERN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="MGA-lizenziert · Cashback ist ein echtes Plus" data-en="MGA licensed · Cashback is a real plus">MGA-lizenziert · Cashback ist ein echtes Plus</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 400€ + 150 FS. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('bizzo', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Ideal für Krypto-Spieler</div>
 </div>
 
-<!-- 10. BETSTRO -->
-<div class="casino-card cc-red" onclick="handleCTA('betstro', this, event)">
+<!-- 12. AVALON -->
+<div class="casino-card cc-blue" onclick="handleCTA('avalon', this, event)">
   <div class="card-shimmer"></div>
-  <div class="rank-badge rb-def">#10</div>
+  <div class="rank-badge rb-def">#12</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/avalon.png" alt="Avalon Casino"><div class="cc-banner-overlay"></div></div>
   <div class="cc-top">
-    <div class="cc-logo">⚡</div>
-    <div class="cc-info">
-      <div class="cc-name">Betstro</div>
-      <div class="cc-desc" data-de="3.000+ Spiele · Wächst schnell" data-en="3,000+ games · Growing fast">3.000+ Spiele · Wächst schnell</div>
+    <div class="cc-info"><div class="cc-name">Avalon</div><div class="cc-desc">Mythisches Design · Großzügige Boni</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.4</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">100</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
+    <div class="bbw good">✓ Curaçao · Faire Bedingungen</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Lizenziert</div><div class="cctag tag-a">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>35x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 100 FS. 35x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('avalon', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Faire Umsatzbedingungen</div>
+</div>
+
+<!-- 13. DRAGONSLOTS -->
+<div class="casino-card cc-red" onclick="handleCTA('dragonslots', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#13</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/dragonslots.png" alt="Dragon Slots"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">Dragon Slots</div><div class="cc-desc">Action-Design · Viele Jackpot-Slots</div></div>
     <div class="cc-score-wrap"><div class="cc-score-num">8.3</div><div class="cc-stars">★★★★☆</div></div>
   </div>
   <div class="cc-bonus-box">
-    <div class="bbl" data-de="WILLKOMMENSBONUS" data-en="WELCOME BONUS">WILLKOMMENSBONUS</div>
+    <div class="bbl">WILLKOMMENSBONUS</div>
     <div class="bb-split">
-      <div class="bb-left">
-        <div class="bbv">100% bis 500€</div>
-        <div class="bbs" data-de="3.000+ Spiele" data-en="3,000+ games">3.000+ Spiele</div>
-      </div>
-      <div class="bb-right">
-        <div class="fs-num">75</div>
-        <div class="fs-lbl">FREISPIELE</div>
-      </div>
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Jackpot-Slots</div></div>
+      <div class="bb-right"><div class="fs-num">150</div><div class="fs-lbl">FREISPIELE</div></div>
     </div>
-    <div class="bbw good">✓ <span data-de="Aufsteiger mit gutem Potenzial" data-en="Rising star with good potential">Aufsteiger mit gutem Potenzial</span></div>
+    <div class="bbw good">✓ Curaçao · Jackpot-Fokus</div>
   </div>
-  <div class="cc-tags">
-    <div class="cctag tag-a">3.000+ Spiele</div>
-    <div class="cctag tag-g">✓ Wächst schnell</div>
-  </div>
-  <div class="cc-wager">
-    <div class="wi">Umsatz: <span>40x</span></div>
-    <div class="wi">Min. Einzahlung: <span>10€</span></div>
-    <div class="wi">Max. Einsatz: <span>5€</span></div>
-    <div class="wi">Gültig: <span>30 Tage</span></div>
-  </div>
+  <div class="cc-tags"><div class="cctag tag-a">Jackpots</div><div class="cctag tag-g">✓ Lizenziert</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
   <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
-  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ auf die erste Einzahlung. 40-fache Umsatzbedingung. Min. Einzahlung 10€. Max. Einsatz 5€. Gültig 30 Tage. Nur Neukunden. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
-  <button class="cc-cta-btn btn-outline" onclick="handleCTA('betstro', this, event)" data-de="⚡ CASINO ANSEHEN →" data-en="⚡ VIEW CASINO →">⚡ CASINO ANSEHEN →</button>
-  <div class="cc-honest ch-good">✓ <span data-de="Neuer Aufsteiger — gut für Early Adopters" data-en="Rising star — good for early adopters">Neuer Aufsteiger — gut für Early Adopters</span></div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 150 FS. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('dragonslots', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Beste Jackpot-Auswahl im Vergleich</div>
+</div>
+
+<!-- 14. LIMEWIN -->
+<div class="casino-card cc-green" onclick="handleCTA('limewin', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#14</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/limewin.png" alt="LimeWin Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">LimeWin</div><div class="cc-desc">Frisches Design · Gutes Willkommenspaket</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.2</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">100</div><div class="fs-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="bbw good">✓ Curaçao · Faire Konditionen</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Lizenziert</div><div class="cctag tag-a">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 100 FS. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('limewin', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Aufsteiger mit gutem Preis-Leistungs-Verhältnis</div>
+</div>
+
+<!-- 15. SPINANDO -->
+<div class="casino-card cc-purple" onclick="handleCTA('spinando', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#15</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/spinando.png" alt="Spinando Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">Spinando</div><div class="cc-desc">Modernes Design · Schnelle Ein-/Auszahlung</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.2</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Einzahlungsbonus</div></div>
+      <div class="bb-right"><div class="fs-num">100</div><div class="fs-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="bbw good">✓ Curaçao · Schnelle Auszahlung</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ Lizenziert</div><div class="cctag tag-a">Slots · Live</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>40x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 100 FS. 40x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('spinando', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Gutes Willkommenspaket für Einsteiger</div>
+</div>
+
+<!-- 16. GRANAWIN -->
+<div class="casino-card cc-gold" onclick="handleCTA('granawin', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#16</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/granawin.png" alt="Granawin Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">Granawin</div><div class="cc-desc">Sport + Casino · Viele Zahlungsmethoden</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.1</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 500€</div><div class="bbs">Sport + Casino</div></div>
+      <div class="bb-right"><div class="fs-num">150</div><div class="fs-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="bbw good">✓ Curaçao · Sport &amp; Casino</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-a">Sport + Casino</div><div class="cctag tag-g">✓ Lizenziert</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>35x</span></div><div class="wi">Min. Einzahlung: <span>20€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 500€ + 150 FS. 35x Umsatz. Min. Einzahlung 20€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('granawin', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Ideal für Sport &amp; Casino Kombination</div>
+</div>
+
+<!-- 17. 20BET -->
+<div class="casino-card cc-blue" onclick="handleCTA('20bet', this, event)">
+  <div class="card-shimmer"></div>
+  <div class="rank-badge rb-def">#17</div>
+  <div class="cc-banner-wrap"><img class="cc-banner" src="images/20bet.png" alt="20Bet Casino"><div class="cc-banner-overlay"></div></div>
+  <div class="cc-top">
+    <div class="cc-info"><div class="cc-name">20Bet</div><div class="cc-desc">Sport + Casino · Niedrige Umsatzbedingungen</div></div>
+    <div class="cc-score-wrap"><div class="cc-score-num">8.1</div><div class="cc-stars">★★★★☆</div></div>
+  </div>
+  <div class="cc-bonus-box">
+    <div class="bbl">WILLKOMMENSBONUS</div>
+    <div class="bb-split">
+      <div class="bb-left"><div class="bbv">100% bis 120€</div><div class="bbs">Sport + Casino</div></div>
+      <div class="bb-right"><div class="fs-num">120</div><div class="fs-lbl">FREISPIELE</div></div>
+    </div>
+    <div class="bbw good">✓ Curaçao · Niedrige Umsatzbedingungen</div>
+  </div>
+  <div class="cc-tags"><div class="cctag tag-g">✓ 30x Umsatz</div><div class="cctag tag-a">Sport + Casino</div></div>
+  <div class="cc-wager"><div class="wi">Umsatz: <span>30x</span></div><div class="wi">Min. Einzahlung: <span>10€</span></div><div class="wi">Max. Einsatz: <span>5€</span></div><div class="wi">Gültig: <span>30 Tage</span></div></div>
+  <div class="cc-det-toggle" onclick="toggleDet(this)">▼ Bonusbedingungen</div>
+  <div class="cc-det-panel"><b>Vollständige Bedingungen:</b> 100% bis 120€ + 120 FS. 30x Umsatz — niedrigster im Vergleich. Min. Einzahlung 10€. Max. Einsatz 5€. Gültig 30 Tage. AGB gelten. <b>Lizenz:</b> Curaçao.</div>
+  <button class="cc-cta-btn btn-gold" onclick="handleCTA('20bet', this, event)">🎰 BONUS JETZT SICHERN →</button>
+  <div class="cc-honest ch-good">✓ Niedrigste Umsatzbedingungen im Vergleich</div>
 </div>
 
 <!-- BOTTOM CTA -->
@@ -793,17 +801,24 @@ function toggleDet(el){
 }
 
 const LINKS = {
-  main:       'https://bonusfacts.com',
-  casumo:     'https://casumo.com',
-  unibet:     'https://unibet.com',
-  betsson:    'https://betsson.com',
-  casinoland: 'https://casinoland.com',
-  wazamba:    'https://wazamba.com',
-  n1bet:      'https://n1bet.com',
-  goldspin:   'https://goldspin.com',
-  glorion:    'https://glorion.com',
-  dudespin:   'https://dudespin1.com',
-  betstro:    'https://betstro.com',
+  main:          'https://bonusfacts.com',
+  playamo:       'https://playamo.com',
+  bobcasino:     'https://bobcasino.com',
+  woocasino:     'https://woo.casino',
+  cookiecasino:  'https://cookiecasino.com',
+  spinia:        'https://spinia.com',
+  nationalcasino:'https://nationalcasino.com',
+  betamo:        'https://betamo.com',
+  betchan:       'https://betchan.com',
+  casinochan:    'https://casinochan.com',
+  masonslots:    'https://masonslots.com',
+  bizzo:         'https://bizzocasino.com',
+  avalon:        'https://avaloncasino.com',
+  dragonslots:   'https://dragonslots.com',
+  limewin:       'https://limewin.com',
+  spinando:      'https://spinando.com',
+  granawin:      'https://granawin.com',
+  '20bet':       'https://20bet.com',
 };
 
 // FIX 1: Link aktiv + FIX 3: event als Parameter
